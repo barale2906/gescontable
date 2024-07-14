@@ -1,6 +1,6 @@
 <nav class="bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
+        <a href="/dashboard" class="flex items-center space-x-3 rtl:space-x-reverse">
             <img src="{{asset('img/logo.jpg')}}" class="h-8" alt="{{env('APP_NAME')}} Logo" />
             <span class="self-center text-lg font-semibold whitespace-nowrap dark:text-white">
                 {{env('APP_NAME')}}

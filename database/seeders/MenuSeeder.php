@@ -50,5 +50,43 @@ class MenuSeeder extends Seeder
             'menu_id'           => $m1->id
 
         ]);
+
+
+        $m2=Menu::create([
+            'name'              => 'CLIENTES',
+            'identificaRuta'    => 'clientes.*',
+            'permiso'           => 'Clientes',
+            'icono'             => 'fa-solid fa-people-roof text-gray-500'
+        ]);
+
+        Submenu::create([
+            'permiso'           => 'cl_clientes',
+            'ruta'              => 'clientes.clientes',
+            'identificaRuta'    => 'clientes.clientes',
+            'name'              => 'Clientes',
+            'icono'             => 'fa-solid fa-diagram-project text-gray-500',
+            'menu_id'           => $m2->id
+
+        ]);
+
+        Submenu::create([
+            'permiso'           => 'cl_calendario',
+            'ruta'              => 'clientes.calendario',
+            'identificaRuta'    => 'clientes.calendario',
+            'name'              => 'Calendario',
+            'icono'             => 'fa-solid fa-diagram-project text-gray-500',
+            'menu_id'           => $m2->id
+
+        ]);
+
+        Submenu::create([
+            'permiso'           => 'cl_programacion',
+            'ruta'              => 'clientes.programacion',
+            'identificaRuta'    => 'clientes.programacion',
+            'name'              => 'Programación',
+            'icono'             => 'fa-solid fa-diagram-project text-gray-500',
+            'menu_id'           => $m2->id
+
+        ]);
     }
 }
