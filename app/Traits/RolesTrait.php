@@ -9,7 +9,7 @@ use Spatie\Permission\Models\Role;
 trait RolesTrait
 {
     public $is_modify=true;
-    public $is_editing=false;
+    public $is_editing=true;
     public $is_inactivar=false;
     public $is_permiso=false;
     public $elegido;
@@ -73,9 +73,10 @@ trait RolesTrait
             'is_modify',
             'is_editing',
             'is_permiso',
-            'is_inactivar'
+            'is_inactivar',
+            'name',
+            'permis'
         );
-
     }
 
     public function show($item, $accion){
@@ -86,6 +87,7 @@ trait RolesTrait
         switch ($accion) {
             case 0:
                 $this->is_editing=true;
+                $this->cargavalores();
                 break;
 
             case 1:
@@ -97,6 +99,17 @@ trait RolesTrait
             case 2:
                 $this->is_permiso=true;
                 break;
+
+            case 3:
+                $this->is_editing=true;
+                break;
+        }
+    }
+
+    public function cargavalores(){
+        $this->name=$this->elegido->name;
+        foreach ($this->elegido->permissions as $value) {
+            array_push($this->permis,$value->id);
         }
     }
 
@@ -114,5 +127,11 @@ trait RolesTrait
 
     private function permisos(){
         return Permission::all();
+    }
+
+    private function encabezados(){
+        return Permission::groupBy('modulo')
+                            ->select('modulo')
+                            ->get();
     }
 }
