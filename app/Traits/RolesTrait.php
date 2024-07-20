@@ -6,6 +6,7 @@ use Livewire\Attributes\On;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use App\Traits\EdicionTrait;
+use Illuminate\Support\Facades\DB;
 
 trait RolesTrait
 {
@@ -39,7 +40,7 @@ trait RolesTrait
     }
 
     // Crear
-    public function new(){
+    public function crear(){
 
         // validate
         $this->validate();
@@ -56,14 +57,21 @@ trait RolesTrait
             ]);
 
             //Asignar permisos
-            $rol->givePermissionTo($this->permis);
+            //$rol->givePermissionTo($this->permis);
+            foreach ($this->permis as $value) {
+                DB::table('role_has_permissions')
+                    ->insert([
+                        'permission_id'=>$value,
+                        'role_id'=>$rol->id
+                    ]);
+            }
 
             // Notificación
             $this->dispatch('alerta', name:'Se ha creado correctamente el rol: '.$this->name);
             $this->resetFields();
 
             //refresh
-            $this->volver();
+            $this->dispatch('cancelando');$this->volver();
         }
     }
 
@@ -82,7 +90,7 @@ trait RolesTrait
         /* Role::whereId($this->elegido->id)->update([
             'name'=>strtolower($this->name)
         ]);
- */
+        */
         //Actualizar permisos
         //$this->elegido->syncPermissions($this->permis);
         $rol->permissions()->sync($this->permis);
@@ -121,7 +129,7 @@ trait RolesTrait
         switch ($accion) {
             case 0:
                 $this->is_editing=true;
-                $this->edirol();
+                $this->modificar(1);
                 $this->cargavalores();
                 break;
 
@@ -137,6 +145,7 @@ trait RolesTrait
 
             case 3:
                 $this->is_editing=true;
+                $this->generar(1);
                 break;
         }
     }

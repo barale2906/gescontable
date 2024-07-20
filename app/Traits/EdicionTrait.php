@@ -35,7 +35,7 @@ trait EdicionTrait
     }
 
 
-    public function crear($id){
+    public function generar($id){
         $this->limpiar();
         $this->is_crear=true;
         switch ($id) {
@@ -43,16 +43,24 @@ trait EdicionTrait
                 //Roles
                 $this->is_name=!$this->is_name;
                 $this->is_permisos=!$this->is_permisos;
-                $this->is_editar=!$this->is_editar;
+                $this->texto_enca_name="Nombre del Rol";
+                $this->texto_holder_name='Registre nombre';
                 break;
         }
     }
 
-    public function edirol(){
-        $this->is_name=!$this->is_name;
-        $this->is_permisos=!$this->is_permisos;
-        $this->texto_enca_name="Nombre del Rol";
-        $this->texto_holder_name='Registro el nombre del rol';
-        $this->is_editar=!$this->is_editar;
+    public function modificar($id){
+
+        $this->limpiar();
+        $this->is_editar=true;
+        switch ($id) {
+            case 1:
+                //Rol
+                $this->is_name=!$this->is_name;
+                $this->is_permisos=!$this->is_permisos;
+                $this->texto_enca_name="Nombre del Rol";
+                $this->texto_holder_name='Registro el nombre del rol';
+                break;
+        }
     }
 }
