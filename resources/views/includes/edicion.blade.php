@@ -24,7 +24,7 @@
         @if ($buscar)
             <div class="w-48 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                 @foreach ($usuarios as $item)
-                    <button aria-current="true" type="button" wire:click.prevent="selUsuario({{$item->id}})" class="w-full px-4 py-2 font-medium text-left rtl:text-right text-white bg-blue-700 border-b border-gray-200 rounded-t-lg cursor-pointer focus:outline-none dark:bg-gray-800 dark:border-gray-600 capitalize">
+                    <button aria-current="true" type="button" wire:click.prevent="selUsuario({{$item->id}})" class="w-full px-4 py-2 font-medium text-left rtl:text-right text-white bg-orange-400 border-b border-gray-200 rounded-lg cursor-pointer focus:outline-none dark:bg-gray-800 dark:border-gray-600 capitalize">
                         {{$item->name}}
                     </button>
                 @endforeach
