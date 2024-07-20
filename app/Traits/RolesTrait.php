@@ -5,17 +5,20 @@ namespace App\Traits;
 use Livewire\Attributes\On;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+use App\Traits\EdicionTrait;
 
 trait RolesTrait
 {
+    use EdicionTrait;
+
     public $is_modify=true;
-    public $is_editing=true;
+    public $is_editing=false;
     public $is_inactivar=false;
     public $is_permiso=false;
     public $elegido;
     public $nameinac;
     public $statusinac;
-    public $name = '';
+    public $name;
     public $permis = [];
 
     /**
@@ -64,6 +67,35 @@ trait RolesTrait
         }
     }
 
+    //Editar rol
+    public function editar()
+    {
+        // validate
+        $this->validate();
+
+        $rol=Role::find($this->elegido->id);
+        $rol->update([
+            'name'=>strtolower($this->name)
+        ]);
+
+        //Actualizar registros
+        /* Role::whereId($this->elegido->id)->update([
+            'name'=>strtolower($this->name)
+        ]);
+ */
+        //Actualizar permisos
+        //$this->elegido->syncPermissions($this->permis);
+        $rol->permissions()->sync($this->permis);
+
+        $this->dispatch('alerta', name:'Se ha modificado correctamente el Rol: '.$this->name);
+        $this->resetFields();
+
+        //refresh
+        $this->dispatch('refresh');
+        $this->dispatch('cancelando');
+        $this->limpiar();
+    }
+
     //Activar evento
     #[On('cancelando')]
     //Mostrar formulario de inactivación
@@ -77,6 +109,8 @@ trait RolesTrait
             'name',
             'permis'
         );
+
+        $this->limpiar();
     }
 
     public function show($item, $accion){
@@ -87,6 +121,7 @@ trait RolesTrait
         switch ($accion) {
             case 0:
                 $this->is_editing=true;
+                $this->edirol();
                 $this->cargavalores();
                 break;
 
