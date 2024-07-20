@@ -2,6 +2,7 @@
 
 namespace App\Traits;
 
+use App\Models\User;
 use Livewire\Attributes\On;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -21,6 +22,9 @@ trait RolesTrait
     public $statusinac;
     public $name;
     public $permis = [];
+    public $buscar=null;
+    public $buscausuario;
+    public $user;
 
     /**
      * Reglas de validación
@@ -76,8 +80,7 @@ trait RolesTrait
     }
 
     //Editar rol
-    public function editar()
-    {
+    public function editar(){
         // validate
         $this->validate();
 
@@ -110,12 +113,18 @@ trait RolesTrait
     public function volver()
     {
         $this->reset(
-            'is_modify',
-            'is_editing',
-            'is_permiso',
-            'is_inactivar',
-            'name',
-            'permis'
+                'is_modify',
+                'is_editing',
+                'is_inactivar',
+                'is_permiso',
+                'elegido',
+                'nameinac',
+                'statusinac',
+                'name',
+                'permis',
+                'buscar',
+                'buscausuario',
+                'user',
         );
 
         $this->limpiar();
@@ -141,6 +150,7 @@ trait RolesTrait
 
             case 2:
                 $this->is_permiso=true;
+                $this->generar(2);
                 break;
 
             case 3:
@@ -163,6 +173,49 @@ trait RolesTrait
         ]);
         $this->dispatch('alerta', name:'Se modifico el estado del rol.');
         $this->volver();
+    }
+
+    //Buscar usuario
+    public function buscaUsu(){
+        $this->buscausuario=strtolower($this->buscar);
+    }
+
+
+
+    public function selUsuario($item){
+        $this->user=User::find($item);
+        $this->is_permisos=true;
+        $this->reset('buscar');
+        $this->permisGeneral();
+    }
+
+    public function permisGeneral(){
+        $this->reset('permis');
+        $datos=$this->user->getAllPermissions();
+        foreach ($datos as $value) {
+            array_push($this->permis,$value->id);
+        }
+    }
+
+    public function asignar(){
+        //Convertir ids a enteros
+        $ids=array();
+        foreach ($this->permis as $value) {
+            array_push($ids,intval($value));
+        }
+
+        $this->user->syncPermissions($ids);
+
+        //refresh
+        $this->dispatch('refresh');
+        $this->dispatch('cancelando');
+        $this->limpiar();
+    }
+
+    private function usuarios(){
+        return User::buscar($this->buscausuario)
+                    ->orderBy('name','ASC')
+                    ->get();
     }
 
     private function roles(){

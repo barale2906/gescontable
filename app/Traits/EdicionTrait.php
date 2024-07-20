@@ -8,6 +8,7 @@ trait EdicionTrait
     public $is_name=false;
     public $is_email=false;
     public $is_permisos=false;
+    public $is_buscando=false;
 
     //Zonas con grillas
     public $is_grilla=false;
@@ -20,17 +21,20 @@ trait EdicionTrait
     //Botones
     public $is_crear=false;
     public $is_editar=false;
+    public $is_asignar=false;
 
     public function limpiar(){
         $this->reset(
             'is_name',
             'is_email',
             'is_permisos',
+            'is_buscando',
             'is_grilla',
             'texto_holder_name',
             'texto_enca_name',
             'is_editar',
             'is_crear',
+            'is_asignar'
         );
     }
 
@@ -45,6 +49,14 @@ trait EdicionTrait
                 $this->is_permisos=!$this->is_permisos;
                 $this->texto_enca_name="Nombre del Rol";
                 $this->texto_holder_name='Registre nombre';
+                break;
+
+            case 2:
+                //Roles Asigna permisos
+                $this->is_buscando=!$this->is_buscando;
+                $this->texto_enca_name="Nombre del Usuario";
+                $this->is_crear=false;
+                $this->is_asignar=true;
                 break;
         }
     }

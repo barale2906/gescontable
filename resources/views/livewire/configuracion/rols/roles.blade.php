@@ -73,7 +73,7 @@
     @endif
 
     @if ($is_permiso)
-        <livewire:configuracion.rol.permisos />
+        @include('includes.edicion')
     @endif
 
     @push('js')

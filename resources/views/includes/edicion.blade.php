@@ -10,6 +10,27 @@
             @enderror
         </div>
     @endif
+    @if ($is_buscando)
+        @if ($user)
+            <h1 class=" text-center font-extrabold text-lg text-blue-400">
+                Asignar permisos a: <span class=" uppercase">{{$user->name}}</span>
+            </h1>
+        @endif
+        <div class="relative z-0 w-full mb-5 group">
+            <input type="text" wire:model="buscar"
+            wire:keydown="buscaUsu()" name="buscar" id="buscar" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder={{$texto_holder_name}} required />
+            <label for="buscar" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">{{$texto_enca_name}}</label>
+        </div>
+        @if ($buscar)
+            <div class="w-48 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                @foreach ($usuarios as $item)
+                    <button aria-current="true" type="button" wire:click.prevent="selUsuario({{$item->id}})" class="w-full px-4 py-2 font-medium text-left rtl:text-right text-white bg-blue-700 border-b border-gray-200 rounded-t-lg cursor-pointer focus:outline-none dark:bg-gray-800 dark:border-gray-600 capitalize">
+                        {{$item->name}}
+                    </button>
+                @endforeach
+            </div>
+        @endif
+    @endif
     @if ($is_email)
         <div class="relative z-0 w-full mb-5 group">
             <input type="email" name="floating_email" wire:model="email" id="floating_email" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
@@ -80,6 +101,11 @@
     @if ($is_editar)
         <button type="button" wire:click.prevent="editar" class="text-black capitalize bg-blue-400 hover:bg-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-100 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-300 dark:hover:bg-blue-400 dark:focus:ring-blue-500">
         EDITAR
+        </button>
+    @endif
+    @if ($is_asignar)
+        <button type="button" wire:click.prevent="asignar" class="text-black capitalize bg-orange-400 hover:bg-orange-500 focus:ring-4 focus:outline-none focus:ring-orange-100 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-orange-300 dark:hover:bg-orange-400 dark:focus:ring-orange-500">
+        ASIGNAR
         </button>
     @endif
     <button type="button" wire:click.prevent="$dispatch('cancelando')" class="text-black bg-red-400 hover:bg-red-500 focus:ring-4 focus:outline-none focus:ring-red-100 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-red-300 dark:hover:bg-red-400 dark:focus:ring-red-500">

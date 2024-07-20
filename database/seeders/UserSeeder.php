@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\User;
+use Spatie\Permission\Models\Role;
 
 class UserSeeder extends Seeder
 {
@@ -19,5 +20,17 @@ class UserSeeder extends Seeder
             'password'=>bcrypt('10203040'),
             'rol_id'=>1
         ])->assignRole('Superusuario');
+
+        $id=1;
+
+        while ($id <= 100) {
+
+            $role=Role::inRandomOrder()->first();
+
+            User::factory()->create([
+                'rol_id'=>$role->id
+            ])->assignRole($role->name);
+            $id++;
+        }
     }
 }

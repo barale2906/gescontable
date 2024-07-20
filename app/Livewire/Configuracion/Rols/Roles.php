@@ -2,14 +2,12 @@
 
 namespace App\Livewire\Configuracion\Rols;
 
-use App\Traits\EdicionTrait;
 use Livewire\Component;
 use App\Traits\RolesTrait;
 
 class Roles extends Component
 {
     use RolesTrait;
-    use EdicionTrait;
 
     public function render()
     {
@@ -17,6 +15,7 @@ class Roles extends Component
             'roles'         =>$this->roles(),
             'permisos'      =>$this->permisos(),
             'encabezados'   =>$this->encabezados(),
+            'usuarios'      =>$this->usuarios(),
         ]);
     }
 }
