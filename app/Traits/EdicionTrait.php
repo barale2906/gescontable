@@ -62,6 +62,16 @@ trait EdicionTrait
                 $this->is_crear=false;
                 $this->is_asignar=true;
                 break;
+
+            case 3:
+                //Usuarios
+                $this->is_name=!$this->is_name;
+                $this->is_email=!$this->is_email;
+                $this->is_password=!$this->is_password;
+                $this->is_rols=!$this->is_rols;
+                $this->texto_enca_name="Nombre del Usuario";
+                $this->texto_holder_name='Nombre del usuario';
+                break;
         }
     }
 

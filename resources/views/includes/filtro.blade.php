@@ -16,7 +16,7 @@
                     <i class="fa-solid fa-filter"></i>
                 </a>
             @can($permiso)
-                <a href="#" wire:click.prevent="" class="px-4 py-2 text-sm font-medium text-gray-900 bg-green-400 border border-gray-200 rounded-e-lg hover:bg-green-200 hover:text-green-700 focus:z-10 focus:ring-2 focus:ring-green-700 focus:text-green-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-green-500 dark:focus:text-white">
+                <a href="#" wire:click.prevent="creando" class="px-4 py-2 text-sm font-medium text-gray-900 bg-green-400 border border-gray-200 rounded-e-lg hover:bg-green-200 hover:text-green-700 focus:z-10 focus:ring-2 focus:ring-green-700 focus:text-green-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-green-500 dark:focus:text-white">
                     <i class="fa-solid fa-plus"></i>
                 </a>
             @endcan

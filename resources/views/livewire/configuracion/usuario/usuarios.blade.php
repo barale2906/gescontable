@@ -1,7 +1,7 @@
 <div>
     <div class="justify-center items-center">
         <div class="bg-blue-200 rounded-lg align-middle p-2 mb-2 text-center">
-            <h1 class="text-xl uppercase">roles y permisos</h1>
+            <h1 class="text-xl uppercase">usuarios registrados en el sistema</h1>
         </div>
         @include('includes.filtro')
         @if ($is_modify)

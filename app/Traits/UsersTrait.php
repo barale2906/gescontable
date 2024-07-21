@@ -109,11 +109,6 @@ trait UsersTrait
                 $this->nameinac=$this->elegido->name;
                 $this->statusinac=$this->elegido->status;
                 break;
-
-            case 2:
-                $this->is_editing=true;
-                $this->generar(3);
-                break;
         }
 
     }
@@ -145,6 +140,39 @@ trait UsersTrait
             'password',
             'rol_id'
         );
+    }
+
+    // Crear
+    public function creando(){
+        $this->is_editing=true;
+        $this->is_modify=false;
+
+        $this->generar(3);
+    }
+
+    public function crear(){
+
+        // validate
+        $this->validate();
+
+        //Verificar que no exista el registro en la base de datos
+        $existe=User::Where('email', strtolower($this->email))->count();
+
+        if($existe>0){
+            $this->dispatch('alerta', name:'Ya existe el usuario registrado con el correo electrónico: '.$this->email);
+        } else {
+            //Crear registro
+            $usuario = User::create([
+                                'name'=>strtolower($this->name),
+                            ]);
+
+            // Notificación
+            $this->dispatch('alerta', name:'Se ha creado correctamente el rol: '.$this->name);
+            $this->resetFields();
+
+            //refresh
+            $this->dispatch('cancelando');$this->volver();
+        }
     }
 
     public function editar(){
