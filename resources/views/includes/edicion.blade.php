@@ -71,6 +71,7 @@
         </div>
     @endif
     @if ($is_grilla)
+
         <div class="grid md:grid-cols-2 md:gap-6">
             <div class="relative z-0 w-full mb-5 group">
                     <input type="text" name="floating_first_name" id="floating_first_name" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
@@ -140,6 +141,28 @@
         <i class="fa-solid fa-rectangle-xmark mr-2"></i> Cancelar
     </button>
 </form>
+
+@if ($is_pass_change)
+    <form class="max-w-md mx-auto bg-blue-50 p-2 rounded-sm">
+        <h1 class=" text-center m-5">
+            CAMBIAR CONTRASEÑA
+        </h1>
+
+        <div class="grid md:grid-cols-3 md:gap-4 m-5">
+            <div class="relative z-0 w-full mb-5 group">
+                    <input type="password" wire:model.live="contra1" name="floating_first_name" id="floating_first_name" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"  />
+                    <label for="floating_first_name" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Nueva Contraseña</label>
+            </div>
+            <div class="relative z-0 w-full mb-5 group">
+                <input type="password" wire:model.live="contra2" name="floating_last_name" id="floating_last_name" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
+                <label for="floating_last_name" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Repita Nueva Contraseña</label>
+            </div>
+            <button type="button" wire:click.prevent="cambiarpassword" class="text-black capitalize bg-green-400 hover:bg-green-500 focus:ring-4 focus:outline-none focus:ring-green-100 font-medium rounded-lg text-sm w-full sm:w-auto text-center dark:bg-green-300 dark:hover:bg-green-400 dark:focus:ring-green-500">
+                Cambiar
+            </button>
+        </div>
+    </form>
+@endif
 
 
 

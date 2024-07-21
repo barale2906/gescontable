@@ -23,6 +23,8 @@ trait UsersTrait
     public $email;
     public $password;
     public $rol_id;
+    public $contra1;
+    public $contra2;
 
     public $nameinac;
     public $statusinac;
@@ -223,6 +225,26 @@ trait UsersTrait
 
         $this->dispatch('alerta', name:'Se modifico el estado del Usuario: '.$this->nameinac);
         $this->volver();
+    }
+
+    public function cambiarpassword(){
+
+        if($this->contra1 && $this->contra1===$this->contra2){
+
+            $this->elegido->update([
+                'password'=>bcrypt($this->contra1)
+            ]);
+
+            $this->reset(
+                'contra1',
+                'contra2'
+            );
+
+            $this->dispatch('alerta', name:'Se modifico la contraseña para: '.$this->name);
+
+        }else{
+            $this->dispatch('alerta', name:'Las contraseñas deben ser iguales');
+        }
     }
 
     private function users(){

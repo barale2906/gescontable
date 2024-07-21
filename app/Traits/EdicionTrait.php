@@ -12,8 +12,10 @@ trait EdicionTrait
     public $is_rols=false;
     public $is_password=false;
 
+
     //Zonas con grillas
     public $is_grilla=false;
+    public $is_pass_change=false;
 
     //PLace holders y encabezado de campo
     public $texto_holder_name;
@@ -93,6 +95,7 @@ trait EdicionTrait
                 $this->is_name=!$this->is_name;
                 $this->is_email=!$this->is_email;
                 $this->is_rols=!$this->is_rols;
+                $this->is_pass_change=!$this->is_pass_change;
                 $this->texto_enca_name="Nombre del Usuario";
                 $this->texto_holder_name='Registro el nombre del usuario';
                 break;
