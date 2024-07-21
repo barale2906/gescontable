@@ -54,12 +54,12 @@
         </div>
     @endif
     @if ($is_rols)
-        <div class="relative z-0 w-full mb-5 group">
+        <div class="relative z-0 w-full mb-5 group p-2">
             <select wire:model.live="rol_id" id="rol_id"
             class="block py-2.5 px-0 w-full text-xs md:text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer mb-2 capitalize">
-                <option >Rol</option>
+                <option >Elegir rol...</option>
                 @foreach ($roles as $item)
-                    <option value={{$item->name}}>{{$item->name}}</option>
+                    <option class=" p-2" value={{$item->name}}>{{$item->name}}</option>
                 @endforeach
             </select>
             <label for="rol_id" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Rol asignado</label>

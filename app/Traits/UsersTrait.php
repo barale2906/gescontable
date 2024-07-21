@@ -160,18 +160,30 @@ trait UsersTrait
 
         if($existe>0){
             $this->dispatch('alerta', name:'Ya existe el usuario registrado con el correo electrónico: '.$this->email);
-        } else {
-            //Crear registro
-            $usuario = User::create([
-                                'name'=>strtolower($this->name),
-                            ]);
+        } else if($this->password){
+
+            //id del rol
+            $rolelegido=Role::where('name', $this->rol_id)
+                                ->first();
+
+            $usuario=User::create([
+                    'rol_id'=>$rolelegido->id,
+                    'name'=>strtolower($this->name),
+                    'email'=>strtolower($this->email),
+                    'password'=>bcrypt($this->password),
+                ]);
+
+            $usuario->assignRole($this->rol_id);
 
             // Notificación
-            $this->dispatch('alerta', name:'Se ha creado correctamente el rol: '.$this->name);
+            $this->dispatch('alerta', name:'Se ha creado correctamente el usuario: '.$this->name);
             $this->resetFields();
 
             //refresh
-            $this->dispatch('cancelando');$this->volver();
+            $this->dispatch('cancelando');
+
+        }else{
+            $this->dispatch('alerta', name:'El campo contraseña es obligatorio');
         }
     }
 
