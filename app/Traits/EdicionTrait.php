@@ -9,6 +9,8 @@ trait EdicionTrait
     public $is_email=false;
     public $is_permisos=false;
     public $is_buscando=false;
+    public $is_rols=false;
+    public $is_password=false;
 
     //Zonas con grillas
     public $is_grilla=false;
@@ -29,6 +31,8 @@ trait EdicionTrait
             'is_email',
             'is_permisos',
             'is_buscando',
+            'is_rols',
+            'is_password',
             'is_grilla',
             'texto_holder_name',
             'texto_enca_name',
@@ -72,6 +76,15 @@ trait EdicionTrait
                 $this->is_permisos=!$this->is_permisos;
                 $this->texto_enca_name="Nombre del Rol";
                 $this->texto_holder_name='Registro el nombre del rol';
+                break;
+
+            case 2:
+                //Usuario
+                $this->is_name=!$this->is_name;
+                $this->is_email=!$this->is_email;
+                $this->is_rols=!$this->is_rols;
+                $this->texto_enca_name="Nombre del Usuario";
+                $this->texto_holder_name='Registro el nombre del usuario';
                 break;
         }
     }

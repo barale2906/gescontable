@@ -58,7 +58,7 @@
                                 <div class="inline-flex rounded-md shadow-sm">
                                     @can('cf_usersEdita')
                                         @if ($item->status===1)
-                                            <a href="#" wire:click.prevent="show({{$item}},{{0}})" aria-current="page" class="px-4 py-2 text-sm font-medium text-blue-700  bg-blue-400 border border-gray-200 rounded-s-lg hover:bg-gray-100 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white">
+                                            <a href="#" wire:click.prevent="show({{$item->id}},{{0}})" aria-current="page" class="px-4 py-2 text-sm font-medium text-blue-700  bg-blue-400 border border-gray-200 rounded-s-lg hover:bg-gray-100 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white">
                                                 <i class="fa-solid fa-marker"></i>
                                             </a>
                                         @endif

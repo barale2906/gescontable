@@ -15,6 +15,7 @@ class Usuarios extends Component
     {
         return view('livewire.configuracion.usuario.usuarios',[
             'users' =>$this->users(),
+            'roles' =>$this->roles(),
         ]);
     }
 }

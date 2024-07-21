@@ -5,16 +5,24 @@ namespace App\Traits;
 use App\Models\User;
 use Livewire\WithPagination;
 use App\Traits\FiltroTrait;
+use App\Traits\EdicionTrait;
 use Livewire\Attributes\On;
+use Spatie\Permission\Models\Role;
 
 trait UsersTrait
 {
     use WithPagination;
     use FiltroTrait;
+    use EdicionTrait;
 
     public $is_modify=true;
     public $is_editing=false;
     public $is_inactivar=false;
+
+    public $name;
+    public $email;
+    public $password;
+    public $rol_id;
 
     public $nameinac;
     public $statusinac;
@@ -62,14 +70,21 @@ trait UsersTrait
     public function volver()
     {
         $this->reset(
-            'is_modify',
-            'is_editing',
-            'is_inactivar',
-            'buscar',
-            'buscaregistro',
-            'ordena',
-            'ordenado',
-            'pages',
+                'is_modify',
+                'is_editing',
+                'is_inactivar',
+                'name',
+                'email',
+                'password',
+                'rol_id',
+                'nameinac',
+                'statusinac',
+                'elegido',
+                'buscar',
+                'buscaregistro',
+                'ordena',
+                'ordenado',
+                'pages',
         );
 
         $this->users();
@@ -85,7 +100,7 @@ trait UsersTrait
         switch ($accion) {
             case 0:
                 $this->is_editing=true;
-                $this->modificar(1);
+                $this->modificar(2);
                 $this->cargavalores();
                 break;
 
@@ -96,15 +111,67 @@ trait UsersTrait
                 break;
 
             case 2:
-                $this->is_permiso=true;
-                $this->generar(2);
-                break;
-
-            case 3:
                 $this->is_editing=true;
-                $this->generar(1);
+                $this->generar(3);
                 break;
         }
+
+    }
+
+    public function cargavalores(){
+        $this->name=$this->elegido->name;
+        $this->email=$this->elegido->email;
+
+        $this->rol_id=$this->elegido->roles[0]['name'];
+    }
+
+    /**
+     * Reglas de validación
+     */
+    protected $rules = [
+        'name' => 'required|max:100',
+        'email'=>'required|email',
+        'rol_id'=>'required',
+    ];
+
+    /**
+     * Reset de todos los campos
+     * @return void
+     */
+    public function resetFields(){
+        $this->reset(
+            'name',
+            'email',
+            'password',
+            'rol_id'
+        );
+    }
+
+    public function editar(){
+
+        // validate
+        $this->validate();
+
+        $rol=Role::where('name', $this->rol_id)->first();
+
+        //Actualizar registros
+        User::whereId($this->elegido->id)
+                ->update([
+                    'name'=>strtolower($this->name),
+                    'email'=>strtolower($this->email),
+                    'rol_id'=>$rol->id
+                ]);
+
+        //Actualizar Rol
+        $this->elegido->syncRoles($this->rol_id);
+
+
+        $this->dispatch('alerta', name:'Se ha modificado correctamente el Usuario: '.$this->name);
+        $this->resetFields();
+
+        //refresh
+        $this->dispatch('refresh');
+        $this->dispatch('cancelando');
     }
 
     public function inactivar(){
@@ -122,5 +189,9 @@ trait UsersTrait
         return User::buscar($this->buscaregistro)
                     ->orderBy($this->ordena, $this->ordenado)
                     ->paginate($this->pages);
+    }
+
+    private function roles(){
+        return Role::all();
     }
 }
