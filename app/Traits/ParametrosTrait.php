@@ -155,7 +155,7 @@ trait ParametrosTrait
                     'status'    =>!$this->statusinac,
                 ]);
 
-        $this->dispatch('alerta', name:'Se modifico el estado del Usuario: '.$this->nameinac);
+        $this->dispatch('alerta', name:'Se modifico el estado del parámetro: '.$this->nameinac);
         $this->volver();
     }
 
