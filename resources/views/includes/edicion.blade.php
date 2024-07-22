@@ -10,6 +10,17 @@
             @enderror
         </div>
     @endif
+    @if ($is_porcentaje)
+        <div class="relative z-0 w-full mb-5 group">
+            <input type="text" wire:model="porcentaje" name="floating_first_name" id="floating_first_name" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
+            <label for="floating_first_name" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Porcentaje Aplicable</label>
+            @error('porcentaje')
+                <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                    <span class="font-medium">¡IMPORTANTE!</span>  {{ $message }} .
+                </div>
+            @enderror
+        </div>
+    @endif
     @if ($is_buscando)
         @if ($user)
             <h1 class=" text-center font-extrabold text-lg text-blue-400">
@@ -54,9 +65,9 @@
         </div>
     @endif
     @if ($is_rols)
-        <div class="relative z-0 w-full mb-5 group p-2">
+        <div class="relative z-0 w-full mb-5 group">
             <select wire:model.live="rol_id" id="rol_id"
-            class="block py-2.5 px-0 w-full text-xs md:text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer mb-2 capitalize">
+            class="block p-3 w-full text-xs md:text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer mb-2 capitalize">
                 <option >Elegir rol...</option>
                 @foreach ($roles as $item)
                     <option class=" p-2" value={{$item->name}}>{{$item->name}}</option>
@@ -64,6 +75,23 @@
             </select>
             <label for="rol_id" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Rol asignado</label>
             @error('rol_id')
+                <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                    <span class="font-medium">¡IMPORTANTE!</span>  {{ $message }} .
+                </div>
+            @enderror
+        </div>
+    @endif
+    @if ($is_tipo)
+        <div class="relative z-0 w-full mb-5 group">
+            <select wire:model.live="tipo" id="tipo"
+            class="block p-3 w-full text-xs md:text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer mb-2 capitalize">
+                <option >Tipo de parámetro...</option>
+                <option value=1>Carpeta</option>
+                <option value=2>DIAN</option>
+                <option value=3>Impuesto</option>
+            </select>
+            <label for="tipo" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Tipo Parámetro</label>
+            @error('tipo')
                 <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
                     <span class="font-medium">¡IMPORTANTE!</span>  {{ $message }} .
                 </div>
