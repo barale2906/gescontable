@@ -23,6 +23,12 @@ trait FiltroTrait
                 $this->txt="Buscar por nombre o correo";
                 $this->permiso='cf_usersCrea';
                 break;
+
+            case 2:
+                //Parámetros
+                $this->txt="Buscar por parámetro";
+                $this->permiso='cf_paramsCrea';
+                break;
         }
     }
 }
