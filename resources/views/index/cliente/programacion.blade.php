@@ -1,5 +1,5 @@
-<x-registrado>
+<x-app-layout>
     @push('title')
         Programación
     @endpush
-</x-registrado>
+</x-app-layout>

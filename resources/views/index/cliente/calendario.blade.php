@@ -1,5 +1,5 @@
-<x-registrado>
+<x-app-layout>
     @push('title')
         Calendario
     @endpush
-</x-registrado>
+</x-app-layout>

@@ -1,5 +1,5 @@
-<x-registrado>
+<x-app-layout>
     @push('title')
         Tablero de Control
     @endpush
-</x-registrado>
+</x-app-layout>

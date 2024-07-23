@@ -1,5 +1,5 @@
-<x-registrado>
+<x-app-layout>
     @push('title')
         Gestión de Clientes
     @endpush
-</x-registrado>
+</x-app-layout>
