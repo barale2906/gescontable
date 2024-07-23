@@ -90,8 +90,9 @@ trait ParametrosTrait
      * Reglas de validación
      */
     protected $rules = [
-        'name'  => 'required|max:100|unique:parametros.name',
-        'tipo'  =>'required'
+        'name'  => 'required|max:100|unique:parametros',
+        'tipo'  =>'required',
+        'porcentaje'=>'numeric'
     ];
 
     /**
