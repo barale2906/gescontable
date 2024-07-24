@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
 
             $table->string('name')->unique()->comment('Nombre de la empresa');
-            $table->integer('nit')->unique()->comment('numero de identificación del cliente');
+            $table->string('nit')->unique()->comment('numero de identificación del cliente');
             $table->integer('DV')->comment('digito de verificación de los clientes');
             $table->string('representante_legal')->comment('Gerente de la empresa');
             $table->string('cedula_rl')->comment('documento del representante');

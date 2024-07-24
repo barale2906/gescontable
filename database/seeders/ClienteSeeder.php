@@ -19,6 +19,7 @@ class ClienteSeeder extends Seeder
 
         if(($handle = fopen(public_path() . '/csv/clientes.csv', 'r')) !== false) {
 
+            $bitacora=now().": Creado por Gescontable";
             while(($data = fgetcsv($handle, 26000, ';')) !== false) {
 
                 $row++;
@@ -26,22 +27,21 @@ class ClienteSeeder extends Seeder
                 try {
 
                     Cliente::create([
-                            'name'=>$data[0],
+                            'name'=>strtolower($data[0]),
                             'nit'=>$data[1],
                             'DV'=>$data[2],
-                            'representante_legal'=>$data[3],
+                            'representante_legal'=>strtolower($data[3]),
                             'cedula_rl'=>$data[4],
-                            'direccion'=>$data[5],
+                            'direccion'=>strtolower($data[5]),
                             'telefono'=>$data[6],
-                            'persona_contacto'=>$data[7],
+                            'persona_contacto'=>strtolower($data[7]),
                             'email'=>$data[8],
-                            'software_contable'=>$data[9],
+                            'software_contable'=>strtolower($data[9]),
                             'usuario'=>$data[10],
                             'llave'=>$data[11],
                             'matricula'=>$data[12],
-                            'bitacora'=>$data[13],
+                            'bitacora'=>$bitacora,
                     ]);
-
 
                 }catch(Exception $exception){
                     Log::info('Line: ' . $row . ' clientes with error: ' . $exception->getMessage());

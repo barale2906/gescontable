@@ -29,6 +29,12 @@ trait FiltroTrait
                 $this->txt="Buscar por parámetro";
                 $this->permiso='cf_paramsCrea';
                 break;
+
+            case 3:
+                //Clientes
+                $this->txt="Buscar por nombre, nit";
+                $this->permiso='cl_clientesCrea';
+                break;
         }
     }
 }
