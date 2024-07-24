@@ -24,7 +24,9 @@
         <script src="https://unpkg.com/flowbite@latest/dist/flowbite.min.js"></script>
 
         <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
+        <link href="{{ asset('build/assets/app-Db2faCYS.css') }}" rel="stylesheet">
+        <script src="{{ asset('build/assets/app-C1-XIpUa.js') }}" defer></script>
 
         <!-- Styles -->
         @livewireStyles
