@@ -32,9 +32,6 @@ trait ClienteTrait
     public $usuario;
     public $llave;
     public $matricula;
-    public $bitacora;
-    public $tipo;
-    public $porcentaje;
     public $nameinac;
     public $statusinac;
     public $elegido;
@@ -85,6 +82,18 @@ trait ClienteTrait
                 'is_editing',
                 'is_inactivar',
                 'name',
+                'nit',
+                'DV',
+                'representante_legal',
+                'cedula_rl',
+                'direccion',
+                'telefono',
+                'persona_contacto',
+                'email',
+                'software_contable',
+                'usuario',
+                'llave',
+                'matricula',
                 'nameinac',
                 'statusinac',
                 'elegido',
@@ -95,8 +104,6 @@ trait ClienteTrait
                 'pages',
         );
 
-        $this->params();
-
         $this->limpiar();
     }
 
@@ -104,7 +111,7 @@ trait ClienteTrait
      * Reglas de validación
      */
     protected $rules = [
-        'name'                  => 'required|max:100|unique:clientes',
+        'name'                  =>'required|max:100|unique:clientes',
         'nit'                   =>'required',
         'DV'                    =>'required',
         'representante_legal'   =>'required',
@@ -146,7 +153,7 @@ trait ClienteTrait
         $this->is_editing=true;
         $this->is_modify=false;
 
-        $this->generar(4);
+        $this->generar(5);
     }
 
     public function crear(){
@@ -158,6 +165,7 @@ trait ClienteTrait
 
         Cliente::create([
             'name'=>$this->name,
+            'email'=>$this->email,
             'nit'=>$this->nit,
             'DV'=>$this->DV,
             'representante_legal'=>$this->representante_legal,
@@ -171,7 +179,7 @@ trait ClienteTrait
             'llave'=>$this->llave,
             'matricula'=>$this->matricula,
             'bitacora'=>$bitacora,
-    ]);
+        ]);
 
         // Notificación
         $this->dispatch('alerta', name:'Se ha creado correctamente el cliente: '.$this->name);
@@ -187,13 +195,74 @@ trait ClienteTrait
         $this->elegido=Cliente::find($item);
 
         switch ($accion) {
+
+            case 0:
+                $this->is_editing=true;
+                $this->modificar(3);
+                $this->cargavalores();
+                break;
+
             case 1:
                 $this->is_inactivar=true;
                 $this->nameinac=$this->elegido->name;
-                $this->statusinac=$this->elegido->status;
+                if($this->elegido->status){
+                    $this->statusinac=true;
+                }else{
+                    $this->statusinac=false;
+                }
                 break;
         }
 
+    }
+
+    public function cargavalores(){
+        $this->name=$this->elegido->name;
+        $this->nit=$this->elegido->nit;
+        $this->DV=$this->elegido->DV;
+        $this->representante_legal=$this->elegido->representante_legal;
+        $this->cedula_rl=$this->elegido->cedula_rl;
+        $this->direccion=$this->elegido->direccion;
+        $this->telefono=$this->elegido->telefono;
+        $this->persona_contacto=$this->elegido->persona_contacto;
+        $this->email=$this->elegido->email;
+        $this->software_contable=$this->elegido->software_contable;
+        $this->usuario=$this->elegido->usuario;
+        $this->llave=$this->elegido->llave;
+        $this->matricula=$this->elegido->matricula;
+    }
+
+    //Editar
+    public function editar(){
+        // validate
+        $this->validate();
+
+        $bitacora=now()." ".strtolower(Auth::user()->name).": Actualizo el cliente ----- ".$this->elegido->bitacora;
+
+        $cliente=Cliente::find($this->elegido->id);
+        $cliente->update([
+            'name'=>strtolower($this->name),
+            'nit'=>$this->nit,
+            'DV'=>$this->DV,
+            'representante_legal'=>strtolower($this->representante_legal),
+            'cedula_rl'=>$this->cedula_rl,
+            'direccion'=>strtolower($this->direccion),
+            'telefono'=>$this->telefono,
+            'persona_contacto'=>strtolower($this->persona_contacto),
+            'email'=>$this->email,
+            'software_contable'=>strtolower($this->software_contable),
+            'usuario'=>$this->usuario,
+            'llave'=>$this->llave,
+            'matricula'=>$this->matricula,
+            'bitacora'=>$bitacora,
+        ]);
+
+        $this->dispatch('alerta', name:'Se ha modificado correctamente el cliente: '.$this->name);
+        $this->resetFields();
+
+        //refresh
+        $this->dispatch('refresh');
+        $this->dispatch('cancelando');
+        $this->limpiar();
     }
 
     public function inactivar(){

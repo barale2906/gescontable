@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('llave');
             $table->string('matricula');
             $table->longText('bitacora')->comment('Registrará los cambios en el cliente');
+            $table->boolean('status')->default(true)->comment('false Inactivo, true Activo');
 
             $table->timestamps();
         });

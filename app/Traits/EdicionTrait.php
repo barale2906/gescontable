@@ -13,6 +13,17 @@ trait EdicionTrait
     public $is_rols=false;
     public $is_tipo=false;
     public $is_password=false;
+    public $is_nit=false;
+    public $is_DV=false;
+    public $is_representante_legal=false;
+    public $is_cedula_rl=false;
+    public $is_direccion=false;
+    public $is_telefono=false;
+    public $is_persona_contacto=false;
+    public $is_software_contable=false;
+    public $is_usuario=false;
+    public $is_llave=false;
+    public $is_matricula=false;
 
 
     //Zonas con grillas
@@ -39,6 +50,17 @@ trait EdicionTrait
             'is_rols',
             'is_tipo',
             'is_password',
+            'is_nit',
+            'is_DV',
+            'is_representante_legal',
+            'is_cedula_rl',
+            'is_direccion',
+            'is_telefono',
+            'is_persona_contacto',
+            'is_software_contable',
+            'is_usuario',
+            'is_llave',
+            'is_matricula',
             'is_grilla',
             'is_pass_change',
             'texto_holder_name',
@@ -88,6 +110,25 @@ trait EdicionTrait
                 $this->texto_enca_name="Nombre del Parámetro";
                 $this->texto_holder_name='Registre nombre';
                 break;
+
+            case 5:
+                //Cliente
+                $this->is_name=!$this->is_name;
+                $this->is_email=!$this->is_email;
+                $this->is_nit=!$this->is_nit;
+                $this->is_DV=!$this->is_DV;
+                $this->is_representante_legal=!$this->is_representante_legal;
+                $this->is_cedula_rl=!$this->is_cedula_rl;
+                $this->is_direccion=!$this->is_direccion;
+                $this->is_telefono=!$this->is_telefono;
+                $this->is_persona_contacto=!$this->is_persona_contacto;
+                $this->is_software_contable=!$this->is_software_contable;
+                $this->is_usuario=!$this->is_usuario;
+                $this->is_llave=!$this->is_llave;
+                $this->is_matricula=!$this->is_matricula;
+                $this->texto_enca_name="Nombre del Cliente";
+                $this->texto_holder_name='Registro el nombre del cliente';
+                break;
         }
     }
 
@@ -112,6 +153,24 @@ trait EdicionTrait
                 $this->is_pass_change=!$this->is_pass_change;
                 $this->texto_enca_name="Nombre del Usuario";
                 $this->texto_holder_name='Registro el nombre del usuario';
+                break;
+
+            case 3:
+                //Cliente
+                $this->is_name=!$this->is_name;
+                $this->is_nit=!$this->is_nit;
+                $this->is_DV=!$this->is_DV;
+                $this->is_representante_legal=!$this->is_representante_legal;
+                $this->is_cedula_rl=!$this->is_cedula_rl;
+                $this->is_direccion=!$this->is_direccion;
+                $this->is_telefono=!$this->is_telefono;
+                $this->is_persona_contacto=!$this->is_persona_contacto;
+                $this->is_software_contable=!$this->is_software_contable;
+                $this->is_usuario=!$this->is_usuario;
+                $this->is_llave=!$this->is_llave;
+                $this->is_matricula=!$this->is_matricula;
+                $this->texto_enca_name="Nombre del Cliente";
+                $this->texto_holder_name='Registro el nombre del cliente';
                 break;
         }
     }
