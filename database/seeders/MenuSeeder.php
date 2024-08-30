@@ -53,16 +53,16 @@ class MenuSeeder extends Seeder
 
 
         $m2=Menu::create([
-            'name'              => 'CLIENTES',
-            'identificaRuta'    => 'clientes.*',
-            'permiso'           => 'Clientes',
+            'name'              => 'GESTIÓN',
+            'identificaRuta'    => 'gestion.*',
+            'permiso'           => 'Gestion',
             'icono'             => 'fa-solid fa-people-roof text-gray-500'
         ]);
 
         Submenu::create([
             'permiso'           => 'cl_clientes',
-            'ruta'              => 'clientes.clientes',
-            'identificaRuta'    => 'clientes.clientes',
+            'ruta'              => 'gestion.clientes',
+            'identificaRuta'    => 'gestion.clientes',
             'name'              => 'Clientes',
             'icono'             => 'fa-solid fa-diagram-project text-gray-500',
             'menu_id'           => $m2->id
@@ -70,20 +70,20 @@ class MenuSeeder extends Seeder
         ]);
 
         Submenu::create([
-            'permiso'           => 'cl_calendario',
-            'ruta'              => 'clientes.calendario',
-            'identificaRuta'    => 'clientes.calendario',
-            'name'              => 'Calendario',
+            'permiso'           => 'cl_programacion',
+            'ruta'              => 'gestion.programacion',
+            'identificaRuta'    => 'gestion.programacion',
+            'name'              => 'Programación',
             'icono'             => 'fa-solid fa-diagram-project text-gray-500',
             'menu_id'           => $m2->id
 
         ]);
 
         Submenu::create([
-            'permiso'           => 'cl_programacion',
-            'ruta'              => 'clientes.programacion',
-            'identificaRuta'    => 'clientes.programacion',
-            'name'              => 'Programación',
+            'permiso'           => 'cl_proveedor',
+            'ruta'              => 'gestion.proveedor',
+            'identificaRuta'    => 'gestion.proveedor',
+            'name'              => 'Proveedores',
             'icono'             => 'fa-solid fa-diagram-project text-gray-500',
             'menu_id'           => $m2->id
 

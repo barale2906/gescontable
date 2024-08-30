@@ -81,63 +81,63 @@ class RoleSeeder extends Seeder
 
 
         Permission::create([
-                    'name'=>'Clientes',
-                    'descripcion'=>'Ingreso al menú Clientes',
-                    'modulo'=>'clientes'
+                    'name'=>'Gestion',
+                    'descripcion'=>'Ingreso al menú Gestión',
+                    'modulo'=>'gestion'
                 ])->syncRoles([$Superusuario,$Administrador,$Coordinador,$Auxiliar]);
 
         Permission::create([
                     'name'=>'cl_clientes',
                     'descripcion'=>'Ver listado de clientes',
-                    'modulo'=>'clientes'
+                    'modulo'=>'gestion'
                 ])->syncRoles([$Superusuario,$Administrador,$Coordinador,$Auxiliar]);
 
         Permission::create([
                     'name'=>'cl_clientesCrea',
                     'descripcion'=>'Genera clientes',
-                    'modulo'=>'clientes'
+                    'modulo'=>'gestion'
                 ])->syncRoles([$Superusuario,$Administrador,$Coordinador]);
 
         Permission::create([
                     'name'=>'cl_clientesEdita',
                     'descripcion'=>'Edita clientes',
-                    'modulo'=>'clientes'
+                    'modulo'=>'gestion'
                 ])->syncRoles([$Superusuario,$Administrador,$Coordinador]);
 
         Permission::create([
-                    'name'=>'cl_calendario',
-                    'descripcion'=>'Ver listado de calendario',
-                    'modulo'=>'clientes'
+                    'name'=>'cl_proveedor',
+                    'descripcion'=>'Ver listado de proveedor.',
+                    'modulo'=>'gestion'
                 ])->syncRoles([$Superusuario,$Administrador,$Coordinador,$Auxiliar]);
 
         Permission::create([
-                    'name'=>'cl_calendarioCrea',
-                    'descripcion'=>'Genera calendario',
-                    'modulo'=>'clientes'
+                    'name'=>'cl_proveedorCrea',
+                    'descripcion'=>'Genera proveedor.',
+                    'modulo'=>'gestion'
                 ])->syncRoles([$Superusuario,$Administrador,$Coordinador,$Auxiliar]);
 
         Permission::create([
-                    'name'=>'cl_calendarioEdita',
-                    'descripcion'=>'Edita calendario',
-                    'modulo'=>'clientes'
+                    'name'=>'cl_proveedorEdita',
+                    'descripcion'=>'Edita proveedor.',
+                    'modulo'=>'gestion'
                 ])->syncRoles([$Superusuario,$Administrador,$Coordinador,$Auxiliar]);
 
         Permission::create([
                     'name'=>'cl_programacion',
-                    'descripcion'=>'Ver listado de programacion',
-                    'modulo'=>'clientes'
+                    'descripcion'=>'Ver listado de programación.',
+                    'modulo'=>'gestion'
                 ])->syncRoles([$Superusuario,$Administrador,$Coordinador,$Auxiliar]);
 
         Permission::create([
                     'name'=>'cl_programacionCrea',
-                    'descripcion'=>'Genera programacion',
-                    'modulo'=>'clientes'
+                    'descripcion'=>'Genera programación.',
+                    'modulo'=>'gestion'
                 ])->syncRoles([$Superusuario,$Administrador,$Coordinador,$Auxiliar]);
 
         Permission::create([
                     'name'=>'cl_programacionEdita',
-                    'descripcion'=>'Edita calendario',
-                    'modulo'=>'clientes'
+                    'descripcion'=>'Edita programación.',
+                    'modulo'=>'gestion'
                 ])->syncRoles([$Superusuario,$Administrador,$Coordinador,$Auxiliar]);
     }
 
