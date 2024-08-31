@@ -1,102 +1,150 @@
 <div>
-    <div class="w-full p-4 text-center bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
-        <h5 class="mb-2 text-3xl font-bold text-gray-900 dark:text-white uppercase">
-            {{$actual->name}} NIT: {{$actual->nit}} - {{$actual->DV}}
-        </h5>
-        <p class="mb-5 text-base text-gray-500 sm:text-lg dark:text-gray-400">
-            Datos importantes del cliente:
-        </p>
-        <div class="items-center justify-center space-y-4 sm:flex sm:space-y-0 sm:space-x-4 rtl:space-x-reverse">
-            <a href="#" class="w-full sm:w-auto bg-blue-800 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 text-black rounded-lg inline-flex items-center justify-center px-2 py-2 dark:bg-blue-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700">
-                <i class="fa-solid fa-circle-info"></i>
-                <div class="text-left rtl:text-right">
-                    <div class="mb-1 text-xs">Representante Legal</div>
-                    <div class="-mt-1 font-sans text-sm font-semibold capitalize">{{$actual->representante_legal}}</div>
+    @if ($is_asignado)
+        <div class="w-full p-4 text-center bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+            <h5 class="mb-2 text-3xl font-bold text-gray-900 dark:text-white uppercase">
+                {{$actual->name}} NIT: {{$actual->nit}} - {{$actual->DV}}
+            </h5>
+            <p class="mb-5 text-base text-gray-500 sm:text-lg dark:text-gray-400">
+                Datos importantes del cliente:
+            </p>
+            <div class="items-center justify-center space-y-4 sm:flex sm:space-y-0 sm:space-x-4 rtl:space-x-reverse">
+                <a href="#" class="w-full sm:w-auto bg-gray-800 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-300 text-white rounded-lg inline-flex items-center justify-center px-4 py-2.5 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <div class="text-left rtl:text-right">
+                        <div class="mb-1 text-xs">Representante Legal</div>
+                        <div class="-mt-1 font-sans text-sm font-semibold capitalize">{{$actual->representante_legal}}</div>
+                    </div>
+                </a>
+                <a href="#" class="w-full sm:w-auto bg-gray-800 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-300 text-white rounded-lg inline-flex items-center justify-center px-4 py-2.5 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <div class="text-left rtl:text-right">
+                        <div class="mb-1 text-xs">Cédula Representante</div>
+                        <div class="-mt-1 font-sans text-sm font-semibold">{{$actual->cedula_rl}}</div>
+                    </div>
+                </a>
+                <a href="#" class="w-full sm:w-auto bg-gray-800 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-300 text-white rounded-lg inline-flex items-center justify-center px-4 py-2.5 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <div class="text-left rtl:text-right">
+                        <div class="mb-1 text-xs">Dirección</div>
+                        <div class="-mt-1 font-sans text-sm font-semibold">{{$actual->direccion}}</div>
+                    </div>
+                </a>
+                <a href="#" class="w-full sm:w-auto bg-gray-800 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-300 text-white rounded-lg inline-flex items-center justify-center px-4 py-2.5 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <div class="text-left rtl:text-right">
+                        <div class="mb-1 text-xs">Teléfono</div>
+                        <div class="-mt-1 font-sans text-sm font-semibold">{{$actual->telefono}}</div>
+                    </div>
+                </a>
+                <a href="#" class="w-full sm:w-auto bg-gray-800 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-300 text-white rounded-lg inline-flex items-center justify-center px-4 py-2.5 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <div class="text-left rtl:text-right">
+                        <div class="mb-1 text-xs">Persona de contacto</div>
+                        <div class="-mt-1 font-sans text-sm font-semibold">{{$actual->persona_contacto}}</div>
+                    </div>
+                </a>
+                <a href="#" class="w-full sm:w-auto bg-gray-800 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-300 text-white rounded-lg inline-flex items-center justify-center px-4 py-2.5 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <div class="text-left rtl:text-right">
+                        <div class="mb-1 text-xs">Correo Electrónico</div>
+                        <div class="-mt-1 font-sans text-sm font-semibold">{{$actual->email}}</div>
+                    </div>
+                </a>
+                <div class="max-w-sm p-1 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <a href="#">
+                        <h5 class="mb-2 text-xl font-semibold tracking-tight text-gray-900 dark:text-white">Software Contable</h5>
+                    </a>
+                    <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">
+                        {{$actual->software_contable}}
+                    </p>
                 </div>
-            </a>
-            <a href="#" class="w-full sm:w-auto bg-blue-800 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 text-black rounded-lg inline-flex items-center justify-center px-2 py-2 dark:bg-blue-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700">
-                <i class="fa-solid fa-circle-info"></i>
-                <div class="text-left rtl:text-right">
-                    <div class="mb-1 text-xs">Cédula Representante</div>
-                    <div class="-mt-1 font-sans text-sm font-semibold">{{$actual->cedula_rl}}</div>
+                <div class="max-w-sm p-1 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <a href="#">
+                        <h5 class="mb-2 text-xl font-semibold tracking-tight text-gray-900 dark:text-white">Usuario software</h5>
+                    </a>
+                    <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">
+                        {{$actual->usuario}}
+                    </p>
                 </div>
-            </a>
-            <a href="#" class="w-full sm:w-auto bg-blue-800 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 text-black rounded-lg inline-flex items-center justify-center px-2 py-2 dark:bg-blue-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700">
-                <i class="fa-solid fa-circle-info"></i>
-                <div class="text-left rtl:text-right">
-                    <div class="mb-1 text-xs">Dirección</div>
-                    <div class="-mt-1 font-sans text-sm font-semibold">{{$actual->direccion}}</div>
+                <div class="max-w-sm p-1 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <a href="#">
+                        <h5 class="mb-2 text-xl font-semibold tracking-tight text-gray-900 dark:text-white">Llave</h5>
+                    </a>
+                    <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">
+                        {{$actual->llave}}
+                    </p>
                 </div>
-            </a>
-            <a href="#" class="w-full sm:w-auto bg-blue-800 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 text-black rounded-lg inline-flex items-center justify-center px-2 py-2 dark:bg-blue-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700">
-                <i class="fa-solid fa-circle-info"></i>
-                <div class="text-left rtl:text-right">
-                    <div class="mb-1 text-xs">Teléfono</div>
-                    <div class="-mt-1 font-sans text-sm font-semibold">{{$actual->telefono}}</div>
+                <div class="max-w-sm p-1 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <a href="#">
+                        <h5 class="mb-2 text-xl font-semibold tracking-tight text-gray-900 dark:text-white">Matricula</h5>
+                    </a>
+                    <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">
+                        {{$actual->matricula}}
+                    </p>
                 </div>
-            </a>
-            <a href="#" class="w-full sm:w-auto bg-blue-800 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 text-black rounded-lg inline-flex items-center justify-center px-2 py-2 dark:bg-blue-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700">
-                <i class="fa-solid fa-circle-info"></i>
-                <div class="text-left rtl:text-right">
-                    <div class="mb-1 text-xs">Persona de contacto</div>
-                    <div class="-mt-1 font-sans text-sm font-semibold">{{$actual->persona_contacto}}</div>
-                </div>
-            </a>
-            <a href="#" class="w-full sm:w-auto bg-blue-800 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 text-black rounded-lg inline-flex items-center justify-center px-2 py-2 dark:bg-blue-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700">
-                <i class="fa-solid fa-circle-info"></i>
-                <div class="text-left rtl:text-right">
-                    <div class="mb-1 text-xs">Correo Electrónico</div>
-                    <div class="-mt-1 font-sans text-sm font-semibold">{{$actual->email}}</div>
-                </div>
-            </a>
-            <a href="#" class="w-full sm:w-auto bg-blue-800 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 text-black rounded-lg inline-flex items-center justify-center px-2 py-2 dark:bg-blue-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700">
-                <i class="fa-solid fa-circle-info"></i>
-                <div class="text-left rtl:text-right">
-                    <div class="mb-1 text-xs">Software Contable</div>
-                    <div class="-mt-1 font-sans text-sm font-semibold">{{$actual->software_contable}}</div>
-                </div>
-            </a>
-            <a href="#" class="w-full sm:w-auto bg-blue-800 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 text-black rounded-lg inline-flex items-center justify-center px-2 py-2 dark:bg-blue-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700">
-                <i class="fa-solid fa-circle-info"></i>
-                <div class="text-left rtl:text-right">
-                    <div class="mb-1 text-xs">Usuario software</div>
-                    <div class="-mt-1 font-sans text-sm font-semibold">{{$actual->usuario}}</div>
-                </div>
-            </a>
-            <a href="#" class="w-full sm:w-auto bg-blue-800 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 text-black rounded-lg inline-flex items-center justify-center px-2 py-2 dark:bg-blue-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700">
-                <i class="fa-solid fa-circle-info"></i>
-                <div class="text-left rtl:text-right">
-                    <div class="mb-1 text-xs">Llave</div>
-                    <div class="-mt-1 font-sans text-sm font-semibold">{{$actual->llave}}</div>
-                </div>
-            </a>
-            <a href="#" class="w-full sm:w-auto bg-blue-800 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 text-black rounded-lg inline-flex items-center justify-center px-2 py-2 dark:bg-blue-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700">
-                <i class="fa-solid fa-circle-info"></i>
-                <div class="text-left rtl:text-right">
-                    <div class="mb-1 text-xs">Matricula</div>
-                    <div class="-mt-1 font-sans text-sm font-semibold">{{$actual->matricula}}</div>
-                </div>
-            </a>
+
+            </div>
+
+            <p class="mb-5 text-base text-gray-500 sm:text-lg dark:text-gray-400">
+                Seleccione lo que quiere hacer:
+            </p>
+            <div class="items-center justify-center space-y-4 sm:flex sm:space-y-0 sm:space-x-4 rtl:space-x-reverse">
+                <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <span class="-mt-1 font-sans text-sm font-semibold">Programación</span>
+                </button>
+                <button type="button" class="focus:outline-none text-white bg-cyan-700 hover:bg-cyan-800 focus:ring-4 focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-green-800">
+                    Gestión
+                </button>
+                <button type="button" class="focus:outline-none text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-900">
+                    Cargar soporte
+                </button>
+                <button type="button" wire:click.prevent="activbitacoras" class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">
+                    Bitacora
+                </button>
+                <button type="button" wire:click.prevent="$dispatch('cancelando')" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+                    Cancelar
+                </button>
+            </div>
+        </div>
+    @else
+        <a href="" wire:click.prevent="$dispatch('cancelando')">
+            <h1 class=" bg-cyan-300 text-center content-center font-semibold rounded-full p-4 text-3xl capitalize">
+                No tiene asignado el cliente. <span class=" text-red-600">Volver</span>
+            </h1>
+        </a>
+    @endif
+    @if ($is_bitacora)
+
+
+        <div class="w-full max-w-md p-4 bg-yellow-300 border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+            <div class="flex items-center justify-between mb-4">
+                <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">Bitacora de cambios de la información básica del cliente</h5>
+                <a href="#" wire:click.prevent="volver" class="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">
+                    Cerrar
+                </a>
+        </div>
+        <div class="flow-root bg-yellow-300">
+            <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
+                @foreach ($bitacoras as $item)
+                <li class="py-3 sm:py-4">
+                    <div class="flex items-center">
+                        <div class="flex-1 min-w-0 ms-4">
+                            <p class="text-sm font-medium text-gray-900 dark:text-white">
+                                {{$item}}
+                            </p>
+                        </div>
+                    </div>
+                </li>
+                @endforeach
+            </ul>
+        </div>
         </div>
 
-        <p class="mb-5 text-base text-gray-500 sm:text-lg dark:text-gray-400">
-            Seleccione lo que quiere hacer:
-        </p>
-        <div class="items-center justify-center space-y-4 sm:flex sm:space-y-0 sm:space-x-4 rtl:space-x-reverse">
-            <a href="#" class="w-full sm:w-auto bg-gray-800 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-300 text-white rounded-lg inline-flex items-center justify-center px-4 py-2.5 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700">
-                <svg class="me-3 w-7 h-7" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="apple" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"></path></svg>
-                <div class="text-left rtl:text-right">
-                    <div class="mb-1 text-xs">Registrar actividad</div>
-                    <div class="-mt-1 font-sans text-sm font-semibold">Plan de </div>
-                </div>
-            </a>
-            <a href="#" class="w-full sm:w-auto bg-gray-800 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-300 text-white rounded-lg inline-flex items-center justify-center px-4 py-2.5 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700">
-                <svg class="me-3 w-7 h-7" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="google-play" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"></path></svg>
-                <div class="text-left rtl:text-right">
-                    <div class="mb-1 text-xs">Get in on</div>
-                    <div class="-mt-1 font-sans text-sm font-semibold">Google Play</div>
-                </div>
-            </a>
-        </div>
-    </div>
+    @endif
+
 </div>

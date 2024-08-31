@@ -83,6 +83,7 @@ trait ClienteTrait
                 'is_modify',
                 'is_editing',
                 'is_inactivar',
+                'is_gestion',
                 'name',
                 'nit',
                 'DV',
@@ -112,21 +113,23 @@ trait ClienteTrait
     /**
      * Reglas de validación
      */
-    protected $rules = [
-        'name'                  =>'required|max:100|unique:clientes',
-        'nit'                   =>'required',
-        'DV'                    =>'required',
-        'representante_legal'   =>'required',
-        'cedula_rl'             =>'required',
-        'direccion'             =>'required',
-        'telefono'              =>'required',
-        'persona_contacto'      =>'required',
-        'email'                 =>'required',
-        'software_contable'     =>'required',
-        'usuario'               =>'required',
-        'llave'                 =>'required',
-        'matricula'             =>'required',
-    ];
+    protected function rules(){
+            return [
+                'name'                  => 'required|max:100|unique:clientes,name,' . $this->elegido->id,
+                'nit'                   =>'required',
+                'DV'                    =>'required',
+                'representante_legal'   =>'required',
+                'cedula_rl'             =>'required',
+                'direccion'             =>'required',
+                'telefono'              =>'required',
+                'persona_contacto'      =>'required',
+                'email'                 =>'required',
+                'software_contable'     =>'required',
+                'usuario'               =>'required',
+                'llave'                 =>'required',
+                'matricula'             =>'required',
+            ];
+    }
 
     /**
      * Reset de todos los campos
@@ -244,19 +247,19 @@ trait ClienteTrait
         $this->validate();
 
         $bitacora=now()." ".strtolower(Auth::user()->name).": Actualizo el cliente con los siguientes datos: ".$this->name.", ".
-        $this->name.", ".
-        $this->nit.", ".
-        $this->DV.", ".
-        $this->representante_legal.", ".
-        $this->cedula_rl.", ".
-        $this->direccion.", ".
-        $this->telefono.", ".
-        $this->persona_contacto.", ".
-        $this->email.", ".
-        $this->software_contable.", ".
-        $this->usuario.", ".
-        $this->llave.", ".
-        $this->matricula.", ".
+        'Nombre: '.$this->name.", ".
+        'Nit: '.$this->nit.", ".
+        'DV: '.$this->DV.", ".
+        'RL: '.$this->representante_legal.", ".
+        'Cédula RL: '.$this->cedula_rl.", ".
+        'Dirección: '.$this->direccion.", ".
+        'Teléfono: '.$this->telefono.", ".
+        'Contacto: '.$this->persona_contacto.", ".
+        'Correo: '.$this->email.", ".
+        'Software: '.$this->software_contable.", ".
+        'Usuario: '.$this->usuario.", ".
+        'llave: '.$this->llave.", ".
+        'Matricula: '.$this->matricula.", ".
         " ----- ".$this->elegido->bitacora;
 
         $cliente=Cliente::find($this->elegido->id);
