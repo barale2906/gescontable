@@ -44,7 +44,7 @@ trait ClienteTrait
     public $pages = 15;
 
     public function mount(){
-        $this->claseFiltro(2);
+        $this->claseFiltro(3);
     }
 
     //Cargar variable

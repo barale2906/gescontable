@@ -38,7 +38,7 @@ trait ProveedorTrait
     public $pages = 15;
 
     public function mount(){
-        $this->claseFiltro(2);
+        $this->claseFiltro(4);
     }
 
     //Cargar variable
