@@ -18,6 +18,7 @@ trait ClienteTrait
     public $is_modify=true;
     public $is_editing=false;
     public $is_inactivar=false;
+    public $is_gestion=false;
 
     public $name;
     public $nit;
@@ -35,6 +36,7 @@ trait ClienteTrait
     public $nameinac;
     public $statusinac;
     public $elegido;
+    public $id;
 
     public $buscar=null;
     public $buscaregistro;
@@ -211,6 +213,11 @@ trait ClienteTrait
                     $this->statusinac=false;
                 }
                 break;
+
+            case 2:
+                $this->is_gestion=true;
+                $this->id=$item;
+                break;
         }
 
     }
@@ -236,7 +243,21 @@ trait ClienteTrait
         // validate
         $this->validate();
 
-        $bitacora=now()." ".strtolower(Auth::user()->name).": Actualizo el cliente ----- ".$this->elegido->bitacora;
+        $bitacora=now()." ".strtolower(Auth::user()->name).": Actualizo el cliente con los siguientes datos: ".$this->name.", ".
+        $this->name.", ".
+        $this->nit.", ".
+        $this->DV.", ".
+        $this->representante_legal.", ".
+        $this->cedula_rl.", ".
+        $this->direccion.", ".
+        $this->telefono.", ".
+        $this->persona_contacto.", ".
+        $this->email.", ".
+        $this->software_contable.", ".
+        $this->usuario.", ".
+        $this->llave.", ".
+        $this->matricula.", ".
+        " ----- ".$this->elegido->bitacora;
 
         $cliente=Cliente::find($this->elegido->id);
         $cliente->update([
