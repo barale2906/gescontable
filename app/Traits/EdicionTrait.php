@@ -25,6 +25,8 @@ trait EdicionTrait
     public $is_llave=false;
     public $is_matricula=false;
 
+    public $is_productos=false;
+
 
     //Zonas con grillas
     public $is_grilla=false;
@@ -67,7 +69,8 @@ trait EdicionTrait
             'texto_enca_name',
             'is_editar',
             'is_crear',
-            'is_asignar'
+            'is_asignar',
+            'is_productos',
         );
     }
 
@@ -129,6 +132,18 @@ trait EdicionTrait
                 $this->texto_enca_name="Nombre del Cliente";
                 $this->texto_holder_name='Registro el nombre del cliente';
                 break;
+
+            case 6:
+                //proveedor
+                $this->is_name=!$this->is_name;
+                $this->is_email=!$this->is_email;
+                $this->is_direccion=!$this->is_direccion;
+                $this->is_telefono=!$this->is_telefono;
+                $this->is_persona_contacto=!$this->is_persona_contacto;
+                $this->is_productos=!$this->is_productos;
+                $this->texto_enca_name="Nombre del proveedor";
+                $this->texto_holder_name='Registro el nombre del proveedor';
+                break;
         }
     }
 
@@ -171,6 +186,18 @@ trait EdicionTrait
                 $this->is_matricula=!$this->is_matricula;
                 $this->texto_enca_name="Nombre del Cliente";
                 $this->texto_holder_name='Registro el nombre del cliente';
+                break;
+
+            case 4:
+                //proveedor
+                $this->is_name=!$this->is_name;
+                $this->is_email=!$this->is_email;
+                $this->is_direccion=!$this->is_direccion;
+                $this->is_telefono=!$this->is_telefono;
+                $this->is_persona_contacto=!$this->is_persona_contacto;
+                $this->is_productos=!$this->is_productos;
+                $this->texto_enca_name="Nombre del proveedor";
+                $this->texto_holder_name='Registro el nombre del proveedor';
                 break;
         }
     }
