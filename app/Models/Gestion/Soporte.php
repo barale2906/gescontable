@@ -16,17 +16,17 @@ class Soporte extends Model
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
     //Relaciones uno a muchos inversa
-    public function clientes():BelongsTo
+    public function cliente():BelongsTo
     {
         return $this->belongsTo(Cliente::class);
     }
 
-    public function parametros():BelongsTo
+    public function parametro():BelongsTo
     {
         return $this->belongsTo(Parametro::class);
     }
 
-    public function cargados():BelongsTo
+    public function cargado():BelongsTo //Usuario que carga el soporte
     {
         return $this->belongsTo(User::class);
     }

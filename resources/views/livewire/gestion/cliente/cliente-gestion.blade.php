@@ -100,7 +100,7 @@
                 <button type="button" class="focus:outline-none text-white bg-cyan-700 hover:bg-cyan-800 focus:ring-4 focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-green-800">
                     Gestión
                 </button>
-                <button type="button" class="focus:outline-none text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-900">
+                <button type="button" wire:click.prevent="cargasoporte" class="focus:outline-none text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-900">
                     Cargar soporte
                 </button>
                 <button type="button" wire:click.prevent="activbitacoras" class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">
@@ -119,32 +119,33 @@
         </a>
     @endif
     @if ($is_bitacora)
-
-
         <div class="w-full max-w-md p-4 bg-yellow-300 border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
             <div class="flex items-center justify-between mb-4">
                 <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">Bitacora de cambios de la información básica del cliente</h5>
                 <a href="#" wire:click.prevent="volver" class="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">
                     Cerrar
                 </a>
-        </div>
-        <div class="flow-root bg-yellow-300">
-            <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
-                @foreach ($bitacoras as $item)
-                <li class="py-3 sm:py-4">
-                    <div class="flex items-center">
-                        <div class="flex-1 min-w-0 ms-4">
-                            <p class="text-sm font-medium text-gray-900 dark:text-white">
-                                {{$item}}
-                            </p>
+            </div>
+            <div class="flow-root bg-yellow-300">
+                <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
+                    @foreach ($bitacoras as $item)
+                    <li class="py-3 sm:py-4">
+                        <div class="flex items-center">
+                            <div class="flex-1 min-w-0 ms-4">
+                                <p class="text-sm font-medium text-gray-900 dark:text-white">
+                                    {{$item}}
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                </li>
-                @endforeach
-            </ul>
+                    </li>
+                    @endforeach
+                </ul>
+            </div>
         </div>
-        </div>
+    @endif
 
+    @if ($is_soporte)
+        <livewire:gestion.soporte.soportes-lista :id="$actual->id" />
     @endif
 
 </div>

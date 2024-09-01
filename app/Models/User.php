@@ -67,7 +67,7 @@ class User extends Authenticatable
     ];
 
     //Relaciones uno a muchos
-    public function parametros():HasMany
+    public function soportes():HasMany
     {
         return $this->hasMany(Soporte::class);
     }

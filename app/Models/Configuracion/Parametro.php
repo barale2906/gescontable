@@ -14,7 +14,7 @@ class Parametro extends Model
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
     //Relaciones uno a muchos
-    public function parametros():HasMany
+    public function soportes():HasMany
     {
         return $this->hasMany(Soporte::class);
     }

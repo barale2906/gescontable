@@ -46,6 +46,11 @@ class ClienteGestion extends Component
         $this->is_bitacora=true;
     }
 
+    public function cargasoporte(){
+        $this->volver();
+        $this->is_soporte=true;
+    }
+
     public function render()
     {
         return view('livewire.gestion.cliente.cliente-gestion');

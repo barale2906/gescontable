@@ -24,7 +24,10 @@ return new class extends Migration
             $table->foreign('cargado_id')->references('id')->on('users');
 
             $table->string('ruta')->comment('donde esta guardado el archivo');
+            $table->string('parame')->comment('Etiqueta que se le dio al archivo');
+            $table->string('clien')->comment('Cliente al que pertenece el soporte');
             $table->string('name')->comment('nombre del documento');
+            $table->longText('observaciones');
 
             $table->timestamps();
         });
