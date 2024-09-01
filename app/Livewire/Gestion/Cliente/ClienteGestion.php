@@ -3,6 +3,7 @@
 namespace App\Livewire\Gestion\Cliente;
 
 use App\Models\Clientes\Clientes\Cliente;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class ClienteGestion extends Component
@@ -22,6 +23,7 @@ class ClienteGestion extends Component
 
     }
 
+    #[On('volviendo')]
     public function volver(){
         $this->reset(
             'is_gestion',

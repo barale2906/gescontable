@@ -4,7 +4,7 @@
         Cargando soporte
     </h1>
 
-    <div class="grid sm:grid-cols-1 md:grid-cols-3 gap-4 md:h-60">
+    <div class="grid sm:grid-cols-1 md:grid-cols-5 gap-3 md:h-36">
         <div class="mb-6">
             <label for="parametro" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Parámetro</label>
             <select wire:model.live="parametro" id="parametro" class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 capitalize">
@@ -46,7 +46,7 @@
             </a>
         @endif
 
-        <a href="" wire:click.prevent="volver" class="text-black bg-gradient-to-r from-red-300 via-red-400 to-red-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-200 dark:focus:ring-cyan-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 capitalize">
+        <a href="" wire:click.prevent="$dispatch('volviendo')" class="text-black bg-gradient-to-r from-red-300 via-red-400 to-red-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-200 dark:focus:ring-cyan-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 capitalize">
             <i class="fa-solid fa-xmark"></i> Cancelar
         </a>
     </div>
