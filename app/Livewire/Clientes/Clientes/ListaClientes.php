@@ -13,6 +13,7 @@ class ListaClientes extends Component
     {
         return view('livewire.clientes.clientes.lista-clientes',[
             'clientes'  =>$this->clientes(),
+            'usuarios'  =>$this->usuarios(),
         ]);
     }
 }

@@ -3,6 +3,8 @@
 namespace App\Livewire\Gestion\Cliente;
 
 use App\Models\Clientes\Clientes\Cliente;
+use App\Models\Gestion\Asignacion;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
@@ -19,8 +21,19 @@ class ClienteGestion extends Component
     public function mount($id){
 
         $this->actual=Cliente::find($id);
-        $this->is_asignado=true;
+        $rol=Auth::user()->rol_id;
+        $userid=Auth::user()->id;
+        $permi=Asignacion::where('cliente_id',$id)
+                            ->where('usuario_id',$userid)
+                            ->count();
 
+        if($rol===1){
+            $this->is_asignado=true;
+        }
+
+        if($permi>0){
+            $this->is_asignado=true;
+        }
     }
 
     #[On('volviendo')]

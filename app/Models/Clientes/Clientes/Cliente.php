@@ -2,6 +2,7 @@
 
 namespace App\Models\Clientes\Clientes;
 
+use App\Models\Gestion\Asignacion;
 use App\Models\Gestion\Soporte;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -17,6 +18,11 @@ class Cliente extends Model
     public function soportes():HasMany
     {
         return $this->hasMany(Soporte::class);
+    }
+
+    public function asignaciones():HasMany
+    {
+        return $this->hasMany(Asignacion::class);
     }
 
     public function scopeBuscar($query, $item){

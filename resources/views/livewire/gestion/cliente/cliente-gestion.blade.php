@@ -1,4 +1,5 @@
 <div>
+
     @if ($is_asignado)
         <div class="w-full p-4 text-center bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
             <h5 class="mb-2 text-3xl font-bold text-gray-900 dark:text-white uppercase">
@@ -118,6 +119,7 @@
             </h1>
         </a>
     @endif
+
     @if ($is_bitacora)
         <div class="w-full max-w-md p-4 bg-yellow-300 border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
             <div class="flex items-center justify-between mb-4">

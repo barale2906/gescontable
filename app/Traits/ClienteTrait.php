@@ -3,6 +3,8 @@
 namespace App\Traits;
 
 use App\Models\Clientes\Clientes\Cliente;
+use App\Models\Gestion\Asignacion;
+use App\Models\User;
 use App\Traits\FiltroTrait;
 use App\Traits\EdicionTrait;
 use Illuminate\Support\Facades\Auth;
@@ -37,6 +39,7 @@ trait ClienteTrait
     public $statusinac;
     public $elegido;
     public $id;
+    public $permis=[];
 
     public $buscar=null;
     public $buscaregistro;
@@ -114,6 +117,8 @@ trait ClienteTrait
      * Reglas de validación
      */
     protected function rules(){
+
+        if($this->elegido){
             return [
                 'name'                  => 'required|max:100|unique:clientes,name,' . $this->elegido->id,
                 'nit'                   =>'required',
@@ -129,6 +134,24 @@ trait ClienteTrait
                 'llave'                 =>'required',
                 'matricula'             =>'required',
             ];
+        }else{
+            return [
+                'name'                  => 'required|max:100|unique:clientes,name',
+                'nit'                   =>'required',
+                'DV'                    =>'required',
+                'representante_legal'   =>'required',
+                'cedula_rl'             =>'required',
+                'direccion'             =>'required',
+                'telefono'              =>'required',
+                'persona_contacto'      =>'required',
+                'email'                 =>'required',
+                'software_contable'     =>'required',
+                'usuario'               =>'required',
+                'llave'                 =>'required',
+                'matricula'             =>'required',
+            ];
+        }
+
     }
 
     /**
@@ -168,23 +191,47 @@ trait ClienteTrait
 
         $bitacora=now()." ".strtolower(Auth::user()->name).": Creo el cliente";
 
-        Cliente::create([
-            'name'=>$this->name,
-            'email'=>$this->email,
-            'nit'=>$this->nit,
-            'DV'=>$this->DV,
-            'representante_legal'=>$this->representante_legal,
-            'cedula_rl'=>$this->cedula_rl,
-            'direccion'=>$this->direccion,
-            'telefono'=>$this->telefono,
-            'persona_contacto'=>$this->persona_contacto,
-            'email'=>$this->email,
-            'software_contable'=>$this->software_contable,
-            'usuario'=>$this->usuario,
-            'llave'=>$this->llave,
-            'matricula'=>$this->matricula,
-            'bitacora'=>$bitacora,
-        ]);
+
+        $cliente=Cliente::create([
+                            'name'=>$this->name,
+                            'email'=>$this->email,
+                            'nit'=>$this->nit,
+                            'DV'=>$this->DV,
+                            'representante_legal'=>$this->representante_legal,
+                            'cedula_rl'=>$this->cedula_rl,
+                            'direccion'=>$this->direccion,
+                            'telefono'=>$this->telefono,
+                            'persona_contacto'=>$this->persona_contacto,
+                            'email'=>$this->email,
+                            'software_contable'=>$this->software_contable,
+                            'usuario'=>$this->usuario,
+                            'llave'=>$this->llave,
+                            'matricula'=>$this->matricula,
+                            'bitacora'=>$bitacora,
+                        ]);
+
+        //Cargar usuarios
+        foreach ($this->permis as $value) {
+            Asignacion::create([
+                'cliente_id'=>$cliente->id,
+                'usuario_id'=>intval($value),
+                'observaciones'=>now().": ".strtolower(Auth::user()->name)." Creación del cliente.",
+            ]);
+        }
+
+        /* //Cargar superusuarios
+        $superusu=User::where('status',true)
+                        ->where('rol_id',1)
+                        ->orderBy('name','ASC')
+                        ->get();
+
+        foreach ($superusu as $value) {
+            Asignacion::create([
+                'cliente_id'=>$cliente->id,
+                'usuario_id'=>intval($value->id),
+                'observaciones'=>now().": ".strtolower(Auth::user()->name)." Creación del cliente.",
+            ]);
+        } */
 
         // Notificación
         $this->dispatch('alerta', name:'Se ha creado correctamente el cliente: '.$this->name);
@@ -240,6 +287,14 @@ trait ClienteTrait
         $this->llave=$this->elegido->llave;
         $this->matricula=$this->elegido->matricula;
     }
+
+    public function gestores(){
+        foreach ($this->elegido->asignaciones as $value) {
+            array_push($this->permis,$value->usuario_id);
+        }
+    }
+
+
 
     //Editar
     public function editar(){
@@ -304,5 +359,12 @@ trait ClienteTrait
         return cliente::buscar($this->buscaregistro)
                             ->orderBy($this->ordena, $this->ordenado)
                             ->paginate($this->pages);
+    }
+
+    private function usuarios(){
+        return User::where('status',true)
+                    ->where('rol_id','>',1)
+                    ->orderBy('name','ASc')
+                    ->get();
     }
 }

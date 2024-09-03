@@ -281,6 +281,23 @@
         @endforeach
     </div>
 @endif
+@if ($is_gestor)
+    <div class=" bg-blue-50 p-2 rounded-3xl">
+        <h2 class="text-lg text-justify mb-6">
+            Listado de funcionarios.
+        </h2>
+        <div class="grid sm:grid-cols-1 md:grid-cols-6 gap-4">
+            @foreach ($usuarios as $item)
+                <div class="flex items-center mb-4 capitalize">
+                    <input id="default-checkbox" wire:model="permis" value="{{$item->id}}" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 " >
+                    <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                        {{$item->name}}
+                    </label>
+                </div>
+            @endforeach
+        </div>
+    </div>
+@endif
 <form class="max-w-md mx-auto bg-blue-50 p-2 rounded-sm">
     @if ($is_crear)
         <button type="button" wire:click.prevent="crear" class="text-black capitalize bg-blue-400 hover:bg-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-100 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-300 dark:hover:bg-blue-400 dark:focus:ring-blue-500">
@@ -323,6 +340,3 @@
         </div>
     </form>
 @endif
-
-
-

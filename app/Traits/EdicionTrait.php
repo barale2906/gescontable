@@ -26,6 +26,7 @@ trait EdicionTrait
     public $is_matricula=false;
 
     public $is_productos=false;
+    public $is_gestor=false;
 
 
     //Zonas con grillas
@@ -71,6 +72,7 @@ trait EdicionTrait
             'is_crear',
             'is_asignar',
             'is_productos',
+            'is_gestor'
         );
     }
 
@@ -129,8 +131,10 @@ trait EdicionTrait
                 $this->is_usuario=!$this->is_usuario;
                 $this->is_llave=!$this->is_llave;
                 $this->is_matricula=!$this->is_matricula;
+                $this->is_gestor=!$this->is_gestor;
                 $this->texto_enca_name="Nombre del Cliente";
                 $this->texto_holder_name='Registro el nombre del cliente';
+
                 break;
 
             case 6:
@@ -184,6 +188,7 @@ trait EdicionTrait
                 $this->is_usuario=!$this->is_usuario;
                 $this->is_llave=!$this->is_llave;
                 $this->is_matricula=!$this->is_matricula;
+                $this->is_gestor=!$this->is_gestor;
                 $this->texto_enca_name="Nombre del Cliente";
                 $this->texto_holder_name='Registro el nombre del cliente';
                 break;
