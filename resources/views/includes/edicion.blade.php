@@ -286,7 +286,7 @@
         <h2 class="text-lg text-justify mb-6">
             Listado de funcionarios.
         </h2>
-        <div class="grid sm:grid-cols-1 md:grid-cols-6 gap-4">
+        <div class="grid sm:grid-cols-1 md:grid-cols-6 gap-2">
             @foreach ($usuarios as $item)
                 <div class="flex items-center mb-4 capitalize">
                     <input id="default-checkbox" wire:model="permis" value="{{$item->id}}" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 " >
@@ -318,6 +318,68 @@
         <i class="fa-solid fa-rectangle-xmark mr-2"></i> Cancelar
     </button>
 </form>
+
+
+@if ($is_gestor_mod)
+        <div class=" bg-blue-50 p-2 rounded-3xl">
+            <div class="grid sm:grid-cols-1 md:grid-cols-2 gap-2">
+                <div class="w-full max-w-md p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+                    <div class="flex items-center justify-between mb-4">
+                        <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">
+                            Usuarios
+                        </h5>
+                    </div>
+                    <div class="flow-root">
+                        <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
+                            @foreach ($usuarios as $item)
+                                <li class="py-3 sm:py-4">
+                                    <div class="flex items-center">
+                                        <div class="flex-shrink-0">
+                                            <a href="" wire:click.prevent="asignauser({{$item->id}})">
+                                                <i class="fa-solid fa-check text-green-600 font-extrabold"></i>
+                                            </a>
+                                        </div>
+                                        <div class="flex-1 min-w-0 ms-4">
+                                            <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                                                {{$item->name}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+                <div class="w-full max-w-md p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+                    <div class="flex items-center justify-between mb-4">
+                        <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">
+                            Usuarios asignados
+                        </h5>
+                    </div>
+                    <div class="flow-root">
+                        <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
+                            @foreach ($elegido->asignaciones as $item)
+                                <li class="py-3 sm:py-4">
+                                    <div class="flex items-center">
+                                        <div class="flex-shrink-0">
+                                            <a href="" wire:click.prevent="eliminauser({{$item->usuario->id}})">
+                                                <i class="fa-solid fa-xmark text-red-600 font-extrabold"></i>
+                                            </a>
+                                        </div>
+                                        <div class="flex-1 min-w-0 ms-4">
+                                            <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                                                {{$item->usuario->name}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+@endif
 
 @if ($is_pass_change)
     <form class="max-w-md mx-auto bg-blue-50 p-2 rounded-sm">

@@ -288,13 +288,30 @@ trait ClienteTrait
         $this->matricula=$this->elegido->matricula;
     }
 
-    public function gestores(){
-        foreach ($this->elegido->asignaciones as $value) {
-            array_push($this->permis,$value->usuario_id);
+    public function asignauser($id){
+        $esta=Asignacion::where('usuario_id',$id)
+                            ->where('cliente_id',$this->elegido->id)
+                            ->count();
+
+        if($esta>0){
+            $this->dispatch('alerta', name:'¡Ya esta asignado!');
+        }else{
+            Asignacion::create([
+                'cliente_id'    =>$this->elegido->id,
+                'usuario_id'    =>$id,
+                'observaciones' =>now().' '.Auth::user()->name.' Asigno usuarios gestores',
+            ]);
+            $this->dispatch('alerta', name:'¡Se asigno correctamente!');
         }
     }
 
+    public function eliminauser($id){
+        Asignacion::where('usuario_id',$id)
+                    ->where('cliente_id',$this->elegido->id)
+                    ->delete();
 
+        $this->dispatch('alerta', name:'¡Se elimino correctamente!');
+    }
 
     //Editar
     public function editar(){
