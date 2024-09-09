@@ -301,7 +301,7 @@ trait ClienteTrait
                 'usuario_id'    =>$id,
                 'observaciones' =>now().' '.Auth::user()->name.' Asigno usuarios gestores',
             ]);
-            $this->dispatch('alerta', name:'¡Se asigno correctamente!');
+            //$this->dispatch('alerta', name:'¡Se asigno correctamente!');
         }
     }
 

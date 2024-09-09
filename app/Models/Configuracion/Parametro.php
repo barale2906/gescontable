@@ -2,6 +2,7 @@
 
 namespace App\Models\Configuracion;
 
+use App\Models\Gestion\Programacion;
 use App\Models\Gestion\Soporte;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -17,6 +18,11 @@ class Parametro extends Model
     public function soportes():HasMany
     {
         return $this->hasMany(Soporte::class);
+    }
+
+    public function programaciones():HasMany
+    {
+        return $this->hasMany(Programacion::class);
     }
 
 
