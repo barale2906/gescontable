@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 use App\Models\Gestion\Asignacion;
+use App\Models\Gestion\Gestion;
 use App\Models\Gestion\Soporte;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -76,6 +77,11 @@ class User extends Authenticatable
     public function asignaciones():HasMany
     {
         return $this->hasMany(Asignacion::class);
+    }
+
+    public function gestiones():HasMany
+    {
+        return $this->hasMany(Gestion::class);
     }
 
     public function scopeBuscar($query, $item){
