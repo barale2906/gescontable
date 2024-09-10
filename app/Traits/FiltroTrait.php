@@ -43,7 +43,7 @@ trait FiltroTrait
                 break;
 
             case 5:
-                //Programaciones
+                //Programaciones - gestiones
                 $this->txt="Buscar por nombre y observaciones";
                 $this->permiso='cl_programacionCrea';
                 break;

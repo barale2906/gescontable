@@ -24,6 +24,7 @@ return new class extends Migration
             $table->integer('soporte_id')->nullable()->comment('Numero del soporte al cuál pertenece');
             $table->string('name')->comment('Nombre de la gestión');
             $table->longText('observaciones')->comment('Datos importantes de la respectiva actividad');
+            $table->boolean('status')->default(true)->comment('false Inactivo, true Activo');
 
             $table->timestamps();
         });

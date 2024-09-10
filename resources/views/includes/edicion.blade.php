@@ -326,6 +326,40 @@
 
         </div>
     @endif
+    @if ($is_soportes)
+        <div class="relative z-0 w-full mb-5 group">
+            <select wire:model.live="soporte_id" id="soporte_id"
+                class="block py-2.5 px-2 w-full text-xs md:text-sm capitalize text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer mb-2">
+                    <option value=0>Soporte...</option>
+                    @foreach ($soportes as $item)
+                        <option value={{$item->id}}>{{$item->name}}</option>
+                    @endforeach
+                </select>
+            <label for="soporte_id" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Soportes de este cliente</label>
+            @error('soporte_id')
+                <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                    <span class="font-medium">¡IMPORTANTE!</span>  {{ $message }} .
+                </div>
+            @enderror
+        </div>
+    @endif
+    @if ($is_programaciones)
+        <div class="relative z-0 w-full mb-5 group">
+            <select wire:model.live="programacion_id" id="programacion_id"
+                class="block py-2.5 px-2 w-full text-xs md:text-sm capitalize text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer mb-2">
+                    <option value=0>Programaciones...</option>
+                    @foreach ($programaciones as $item)
+                        <option value={{$item->id}}>{{$item->name}}</option>
+                    @endforeach
+                </select>
+            <label for="programacion_id" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Programaciones de este cliente</label>
+            @error('programacion_id')
+                <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                    <span class="font-medium">¡IMPORTANTE!</span>  {{ $message }} .
+                </div>
+            @enderror
+        </div>
+    @endif
 </form>
 @if ($is_permisos)
     <div class=" bg-blue-50 p-2 rounded-3xl">

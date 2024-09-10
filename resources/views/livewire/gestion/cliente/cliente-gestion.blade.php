@@ -98,7 +98,7 @@
                     <i class="fa-solid fa-circle-info"></i>
                     <span class="-mt-1 font-sans text-sm font-semibold">Programación</span>
                 </button>
-                <button type="button" class="focus:outline-none text-white bg-cyan-700 hover:bg-cyan-800 focus:ring-4 focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-green-800">
+                <button type="button" wire:click.prevent="gestion" class="focus:outline-none text-white bg-cyan-700 hover:bg-cyan-800 focus:ring-4 focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-green-800">
                     Gestión
                 </button>
                 <button type="button" wire:click.prevent="cargasoporte" class="focus:outline-none text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-900">
@@ -152,6 +152,10 @@
 
     @if ($is_programacion)
         <livewire:gestion.programacion.programaciones :cli="$actual->id" />
+    @endif
+
+    @if ($is_gestion)
+        <livewire:gestion.gestiones :id="$actual->id" />
     @endif
 
 </div>

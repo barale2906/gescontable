@@ -27,7 +27,8 @@ class Gestion extends Model
 
     public function scopeBuscar($query, $item){
         $query->when($item ?? null, function($query, $item){
-            $query->where('observaciones', 'like', "%".$item."%");
+            $query->where('observaciones', 'like', "%".$item."%")
+                    ->orWhere('name', 'like', "%".$item."%");
         });
     }
 }

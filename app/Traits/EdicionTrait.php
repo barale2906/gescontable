@@ -34,6 +34,8 @@ trait EdicionTrait
     public $is_inicio=false;
     public $is_fin=false;
     public $is_observaciones=false;
+    public $is_soportes=false;
+    public $is_programaciones=false;
 
 
 
@@ -174,6 +176,16 @@ trait EdicionTrait
                 $this->texto_enca_name="Nombre de la actividad a programar";
                 $this->texto_holder_name='Nombre de la actividad';
                 break;
+
+            case 8:
+                //Gestiones
+                $this->is_name=!$this->is_name;
+                $this->is_observaciones=!$this->is_observaciones;
+                $this->is_soportes=!$this->is_soportes;
+                $this->is_programaciones=!$this->is_programaciones;
+                $this->texto_enca_name="Nombre de la gestión realizada";
+                $this->texto_holder_name='Nombre de la gestión.';
+                break;
         }
     }
 
@@ -242,6 +254,16 @@ trait EdicionTrait
                 $this->is_observaciones=!$this->is_observaciones;
                 $this->texto_enca_name="Nombre de la actividad a programar";
                 $this->texto_holder_name='Nombre de la actividad';
+                break;
+
+            case 6:
+                //gestiones
+                $this->is_name=!$this->is_name;
+                $this->is_observaciones=!$this->is_observaciones;
+                $this->is_soportes=!$this->is_soportes;
+                $this->is_programaciones=!$this->is_programaciones;
+                $this->texto_enca_name="Nombre de la gestión realizada";
+                $this->texto_holder_name='Nombre de la gestión.';
                 break;
         }
     }
