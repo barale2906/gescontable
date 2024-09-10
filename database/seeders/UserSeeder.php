@@ -21,7 +21,7 @@ class UserSeeder extends Seeder
             'rol_id'=>1
         ])->assignRole('Superusuario');
 
-        $id=1;
+        /* $id=1;
 
         while ($id <= 100) {
 
@@ -31,6 +31,6 @@ class UserSeeder extends Seeder
                 'rol_id'=>$role->id
             ])->assignRole($role->name);
             $id++;
-        }
+        } */
     }
 }
