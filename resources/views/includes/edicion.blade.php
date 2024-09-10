@@ -253,6 +253,79 @@
             @enderror
         </div>
     @endif
+    @if($is_inicio)
+        <div class="relative z-0 w-full mb-5 group">
+            <input type="date" wire:model="inicio" name="inicio" id="inicio" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
+            <label for="inicio" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Fecha de Inicio</label>
+            @error('inicio')
+                <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                    <span class="font-medium">¡IMPORTANTE!</span>  {{ $message }} .
+                </div>
+            @enderror
+        </div>
+    @endif
+    @if($is_fin)
+        <div class="relative z-0 w-full mb-5 group">
+            <input type="date" wire:model="fin" name="fin" id="fin" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
+            <label for="fin" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Fecha de Finalización</label>
+            @error('fin')
+                <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                    <span class="font-medium">¡IMPORTANTE!</span>  {{ $message }} .
+                </div>
+            @enderror
+        </div>
+    @endif
+    @if ($is_parametros)
+        <div class="relative z-0 w-full mb-5 group">
+            <select wire:model.live="parametro_id" id="parametro_id"
+                class="block py-2.5 px-2 w-full text-xs md:text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer mb-2 capitalize">
+                    <option >Parámetro</option>
+                    @foreach ($parametros as $item)
+                        <option value={{$item->id}}>{{$item->name}}</option>
+                    @endforeach
+                </select>
+            <label for="parametro_id" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Parámetros</label>
+            @error('parametro_id')
+                <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                    <span class="font-medium">¡IMPORTANTE!</span>  {{ $message }} .
+                </div>
+            @enderror
+        </div>
+    @endif
+    @if ($is_clientes && !$prele)
+        <div class="relative z-0 w-full mb-5 group">
+            <select wire:model.live="cliente_id" id="cliente_id"
+                class="block py-2.5 px-2 w-full text-xs md:text-sm capitalize text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer mb-2">
+                    <option >Cliente...</option>
+                    @foreach ($clientes as $item)
+                        <option value={{$item->id}}>{{$item->name}}</option>
+                    @endforeach
+                </select>
+            <label for="cliente_id" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Clientes</label>
+            @error('cliente_id')
+                <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                    <span class="font-medium">¡IMPORTANTE!</span>  {{ $message }} .
+                </div>
+            @enderror
+        </div>
+    @endif
+    @if($is_observaciones)
+        <div class="relative z-0 w-full mb-5 group">
+            @if ($elegido)
+                <p class=" text-sm font-normal text-justify">
+                    {{$elegido->observaciones}}
+                </p>
+            @endif
+            <textarea name="observaciones" id="observaciones" wire:model="observaciones" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" cols="30" rows="10"></textarea>
+            <label for="productos" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Observaciones:</label>
+            @error('observaciones')
+                <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                    <span class="font-medium">¡IMPORTANTE!</span>  {{ $message }} .
+                </div>
+            @enderror
+
+        </div>
+    @endif
 </form>
 @if ($is_permisos)
     <div class=" bg-blue-50 p-2 rounded-3xl">

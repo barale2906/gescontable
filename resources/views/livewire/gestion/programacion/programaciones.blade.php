@@ -63,7 +63,7 @@
                         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-green-200">
                             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 <div class="inline-flex rounded-md shadow-sm">
-                                    @can('cl_proveedorEdita')
+                                    @can('cl_programacionEdita')
                                         @if ($item->status)
                                             <button type="button" wire:click.prevent="show({{$item->id}},{{0}})" class="px-4 py-2 text-sm font-medium text-blue-700 bg-cyan-300 border border-cyan-200 rounded-s-lg hover:bg-cyan-100 hover:text-cyan-700 focus:z-10 focus:ring-2 focus:ring-cyan-700 focus:text-cyan-700 dark:bg-gray-800 dark:border-cyan-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-500 dark:focus:text-white">
                                                 <i class="fa-solid fa-marker"></i>

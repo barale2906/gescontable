@@ -13,6 +13,8 @@ class Programaciones extends Component
     {
         return view('livewire.gestion.programacion.programaciones',[
             'programas' => $this->programas(),
+            'clientes'  => $this->clientes(),
+            'parametros'=> $this->parametros(),
         ]);
     }
 }

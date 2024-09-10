@@ -41,6 +41,12 @@ trait FiltroTrait
                 $this->txt="Buscar por nombre, producto";
                 $this->permiso='cl_proveedorCrea';
                 break;
+
+            case 5:
+                //Programaciones
+                $this->txt="Buscar por nombre y observaciones";
+                $this->permiso='cl_programacionCrea';
+                break;
         }
     }
 }

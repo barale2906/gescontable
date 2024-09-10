@@ -29,7 +29,20 @@ class Programacion extends Model
 
     public function scopeBuscar($query, $item){
         $query->when($item ?? null, function($query, $item){
-            $query->where('observaciones', 'like', "%".$item."%");
+            $query->where('observaciones', 'like', "%".$item."%")
+                    ->orwhere('name', 'like', "%".$item."%");
+        });
+    }
+
+    public function scopeCliente($query, $item){
+        $query->when($item ?? null, function($query, $item){
+            $query->where('cliente_id', $item);
+        });
+    }
+
+    public function scopeParametro($query, $item){
+        $query->when($item ?? null, function($query, $item){
+            $query->where('parametro_id', $item);
         });
     }
 

@@ -29,6 +29,13 @@ trait EdicionTrait
     public $is_gestor=false;
     public $is_gestor_mod=false;
 
+    public $is_parametros=false;
+    public $is_clientes=false;
+    public $is_inicio=false;
+    public $is_fin=false;
+    public $is_observaciones=false;
+
+
 
     //Zonas con grillas
     public $is_grilla=false;
@@ -74,7 +81,12 @@ trait EdicionTrait
             'is_asignar',
             'is_productos',
             'is_gestor',
-            'is_gestor_mod'
+            'is_gestor_mod',
+            'is_inicio',
+            'is_fin',
+            'is_parametros',
+            'is_clientes',
+            'is_observaciones',
         );
     }
 
@@ -150,6 +162,18 @@ trait EdicionTrait
                 $this->texto_enca_name="Nombre del proveedor";
                 $this->texto_holder_name='Registro el nombre del proveedor';
                 break;
+
+            case 7:
+                //programaciones
+                $this->is_name=!$this->is_name;
+                $this->is_inicio=!$this->is_inicio;
+                $this->is_fin=!$this->is_fin;
+                $this->is_parametros=!$this->is_parametros;
+                $this->is_clientes=!$this->is_clientes;
+                $this->is_observaciones=!$this->is_observaciones;
+                $this->texto_enca_name="Nombre de la actividad a programar";
+                $this->texto_holder_name='Nombre de la actividad';
+                break;
         }
     }
 
@@ -206,6 +230,18 @@ trait EdicionTrait
                 $this->is_productos=!$this->is_productos;
                 $this->texto_enca_name="Nombre del proveedor";
                 $this->texto_holder_name='Registro el nombre del proveedor';
+                break;
+
+            case 5:
+                //programaciones
+                $this->is_name=!$this->is_name;
+                $this->is_inicio=!$this->is_inicio;
+                $this->is_fin=!$this->is_fin;
+                $this->is_parametros=!$this->is_parametros;
+                $this->is_clientes=!$this->is_clientes;
+                $this->is_observaciones=!$this->is_observaciones;
+                $this->texto_enca_name="Nombre de la actividad a programar";
+                $this->texto_holder_name='Nombre de la actividad';
                 break;
         }
     }
