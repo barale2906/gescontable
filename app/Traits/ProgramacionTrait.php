@@ -113,6 +113,21 @@ trait ProgramacionTrait
         }
     }
 
+    public function limpia(){
+        $this->reset(
+            'is_modify',
+            'is_editing',
+            'is_inactivar',
+            'name',
+            'inicio',
+            'fin',
+            'observaciones',
+            'cliente_id',
+            'parametro_id',
+        );
+        $this->preseleccionado();
+    }
+
     public function preseleccionado(){
         $this->filtrocliente=$this->id;
         $this->cliente_id=$this->id;
@@ -224,7 +239,11 @@ trait ProgramacionTrait
         $this->resetFields();
 
         //refresh
-        $this->dispatch('cancelando');
+        if($this->prele){
+            $this->limpia();
+        }else{
+            $this->dispatch('cancelando');
+        }
     }
 
     public function inactivar(){
@@ -235,7 +254,12 @@ trait ProgramacionTrait
                 ]);
 
         $this->dispatch('alerta', name:'Se modifico el estado de la actividad: '.$this->nameinac);
-        $this->volver();
+        //refresh
+        if($this->prele){
+            $this->limpia();
+        }else{
+            $this->dispatch('cancelando');
+        }
     }
 
     //Editar
@@ -260,7 +284,12 @@ trait ProgramacionTrait
 
         //refresh
         $this->dispatch('refresh');
-        $this->dispatch('cancelando');
+        //refresh
+        if($this->prele){
+            $this->limpia();
+        }else{
+            $this->dispatch('cancelando');
+        }
     }
 
     private function programas(){

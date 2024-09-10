@@ -66,6 +66,11 @@ class ClienteGestion extends Component
         $this->is_soporte=true;
     }
 
+    public function programacion(){
+        $this->volver();
+        $this->is_programacion=true;
+    }
+
     public function render()
     {
         return view('livewire.gestion.cliente.cliente-gestion');

@@ -94,7 +94,7 @@
                 Seleccione lo que quiere hacer:
             </p>
             <div class="items-center justify-center space-y-4 sm:flex sm:space-y-0 sm:space-x-4 rtl:space-x-reverse">
-                <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                <button type="button" wire:click.prevent="programacion" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
                     <i class="fa-solid fa-circle-info"></i>
                     <span class="-mt-1 font-sans text-sm font-semibold">Programación</span>
                 </button>
@@ -148,6 +148,10 @@
 
     @if ($is_soporte)
         <livewire:gestion.soporte.soportes-lista :id="$actual->id" />
+    @endif
+
+    @if ($is_programacion)
+        <livewire:gestion.programacion.programaciones :cli="$actual->id" />
     @endif
 
 </div>
