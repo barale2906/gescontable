@@ -25,7 +25,7 @@
 
         <!-- Scripts -->
         {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
-        <link href="{{ asset('build/assets/app-DdS3FkbT.css') }}" rel="stylesheet">
+        <link href="{{ asset('build/assets/app-DEl_dodA.css') }}" rel="stylesheet">
         <script src="{{ asset('build/assets/app-C1-XIpUa.js') }}" defer></script>
 
         <!-- Styles -->

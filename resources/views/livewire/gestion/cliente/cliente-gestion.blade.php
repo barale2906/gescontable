@@ -8,87 +8,48 @@
             <p class="mb-5 text-base text-gray-500 sm:text-lg dark:text-gray-400">
                 Datos importantes del cliente:
             </p>
-            <div class="items-center justify-center space-y-4 sm:flex sm:space-y-0 sm:space-x-4 rtl:space-x-reverse">
-                <a href="#" class="w-full sm:w-auto bg-gray-800 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-300 text-white rounded-lg inline-flex items-center justify-center px-4 py-2.5 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700">
-                    <i class="fa-solid fa-circle-info"></i>
-                    <div class="text-left rtl:text-right">
-                        <div class="mb-1 text-xs">Representante Legal</div>
-                        <div class="-mt-1 font-sans text-sm font-semibold capitalize">{{$actual->representante_legal}}</div>
-                    </div>
-                </a>
-                <a href="#" class="w-full sm:w-auto bg-gray-800 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-300 text-white rounded-lg inline-flex items-center justify-center px-4 py-2.5 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700">
-                    <i class="fa-solid fa-circle-info"></i>
-                    <div class="text-left rtl:text-right">
-                        <div class="mb-1 text-xs">Cédula Representante</div>
-                        <div class="-mt-1 font-sans text-sm font-semibold">{{$actual->cedula_rl}}</div>
-                    </div>
-                </a>
-                <a href="#" class="w-full sm:w-auto bg-gray-800 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-300 text-white rounded-lg inline-flex items-center justify-center px-4 py-2.5 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700">
-                    <i class="fa-solid fa-circle-info"></i>
-                    <div class="text-left rtl:text-right">
-                        <div class="mb-1 text-xs">Dirección</div>
-                        <div class="-mt-1 font-sans text-sm font-semibold">{{$actual->direccion}}</div>
-                    </div>
-                </a>
-                <a href="#" class="w-full sm:w-auto bg-gray-800 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-300 text-white rounded-lg inline-flex items-center justify-center px-4 py-2.5 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700">
-                    <i class="fa-solid fa-circle-info"></i>
-                    <div class="text-left rtl:text-right">
-                        <div class="mb-1 text-xs">Teléfono</div>
-                        <div class="-mt-1 font-sans text-sm font-semibold">{{$actual->telefono}}</div>
-                    </div>
-                </a>
-                <a href="#" class="w-full sm:w-auto bg-gray-800 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-300 text-white rounded-lg inline-flex items-center justify-center px-4 py-2.5 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700">
-                    <i class="fa-solid fa-circle-info"></i>
-                    <div class="text-left rtl:text-right">
-                        <div class="mb-1 text-xs">Persona de contacto</div>
-                        <div class="-mt-1 font-sans text-sm font-semibold">{{$actual->persona_contacto}}</div>
-                    </div>
-                </a>
-                <a href="#" class="w-full sm:w-auto bg-gray-800 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-300 text-white rounded-lg inline-flex items-center justify-center px-4 py-2.5 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700">
-                    <i class="fa-solid fa-circle-info"></i>
-                    <div class="text-left rtl:text-right">
-                        <div class="mb-1 text-xs">Correo Electrónico</div>
-                        <div class="-mt-1 font-sans text-sm font-semibold">{{$actual->email}}</div>
-                    </div>
-                </a>
-                <div class="max-w-sm p-1 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                    <i class="fa-solid fa-circle-info"></i>
-                    <a href="#">
-                        <h5 class="mb-2 text-xl font-semibold tracking-tight text-gray-900 dark:text-white">Software Contable</h5>
-                    </a>
-                    <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">
-                        {{$actual->software_contable}}
-                    </p>
+            <dl class="grid max-w-screen-xl xs:grid-cols-1 gap-0 p-1 mx-auto text-gray-900 sm:grid-cols-4 xl:grid-cols-4 dark:text-white sm:p-1">
+                <div class="flex flex-col items-center justify-center border border-blue-800 bg-blue-200 m-1 p-1 rounded-lg">
+                    <dt class="mb-2 text-lg font-extrabold">Representante Legal</dt>
+                    <dd class="text-gray-500 dark:text-gray-400 capitalize">{{$actual->representante_legal}}</dd>
                 </div>
-                <div class="max-w-sm p-1 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                    <i class="fa-solid fa-circle-info"></i>
-                    <a href="#">
-                        <h5 class="mb-2 text-xl font-semibold tracking-tight text-gray-900 dark:text-white">Usuario software</h5>
-                    </a>
-                    <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">
-                        {{$actual->usuario}}
-                    </p>
+                <div class="flex flex-col items-center justify-center border border-blue-800 bg-blue-200 m-1 p-1 rounded-lg">
+                    <dt class="mb-2 text-lg font-extrabold">Cédula Representante</dt>
+                    <dd class="text-gray-500 dark:text-gray-400">{{$actual->cedula_rl}}</dd>
                 </div>
-                <div class="max-w-sm p-1 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                    <i class="fa-solid fa-circle-info"></i>
-                    <a href="#">
-                        <h5 class="mb-2 text-xl font-semibold tracking-tight text-gray-900 dark:text-white">Llave</h5>
-                    </a>
-                    <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">
-                        {{$actual->llave}}
-                    </p>
+                <div class="flex flex-col items-center justify-center border border-blue-800 bg-blue-200 m-1 p-1 rounded-lg">
+                    <dt class="mb-2 text-lg font-extrabold">Dirección</dt>
+                    <dd class="text-gray-500 dark:text-gray-400">{{$actual->direccion}}</dd>
                 </div>
-                <div class="max-w-sm p-1 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                    <i class="fa-solid fa-circle-info"></i>
-                    <a href="#">
-                        <h5 class="mb-2 text-xl font-semibold tracking-tight text-gray-900 dark:text-white">Matricula</h5>
-                    </a>
-                    <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">
-                        {{$actual->matricula}}
-                    </p>
+                <div class="flex flex-col items-center justify-center border border-blue-800 bg-blue-200 m-1 p-1 rounded-lg">
+                    <dt class="mb-2 text-lg font-extrabold">Teléfono</dt>
+                    <dd class="text-gray-500 dark:text-gray-400">{{$actual->telefono}}</dd>
                 </div>
-
-            </div>
+                <div class="flex flex-col items-center justify-center border border-blue-800 bg-blue-200 m-1 p-1 rounded-lg">
+                    <dt class="mb-2 text-lg font-extrabold">Persona de contacto</dt>
+                    <dd class="text-gray-500 dark:text-gray-400">{{$actual->persona_contacto}}</dd>
+                </div>
+                <div class="flex flex-col items-center justify-center border border-blue-800 bg-blue-200 m-1 p-1 rounded-lg">
+                    <dt class="mb-2 text-lg font-extrabold">Correo Electrónico</dt>
+                    <dd class="text-gray-500 dark:text-gray-400">{{$actual->email}}</dd>
+                </div>
+                <div class="flex flex-col items-center justify-center border border-blue-800 bg-blue-200 m-1 p-1 rounded-lg">
+                    <dt class="mb-2 text-lg font-extrabold">Software Contable</dt>
+                    <dd class="text-gray-500 dark:text-gray-400">{{$actual->software_contable}}</dd>
+                </div>
+                <div class="flex flex-col items-center justify-center border border-blue-800 bg-blue-200 m-1 p-1 rounded-lg">
+                    <dt class="mb-2 text-lg font-extrabold">Usuario software</dt>
+                    <dd class="text-gray-500 dark:text-gray-400">{{$actual->usuario}}</dd>
+                </div>
+                <div class="flex flex-col items-center justify-center border border-blue-800 bg-blue-200 m-1 p-1 rounded-lg">
+                    <dt class="mb-2 text-lg font-extrabold">Llave</dt>
+                    <dd class="text-gray-500 dark:text-gray-400">{{$actual->llave}}</dd>
+                </div>
+                <div class="flex flex-col items-center justify-center border border-blue-800 bg-blue-200 m-1 p-1 rounded-lg">
+                    <dt class="mb-2 text-lg font-extrabold">Matricula</dt>
+                    <dd class="text-gray-500 dark:text-gray-400">{{$actual->matricula}}</dd>
+                </div>
+            </dl>
 
             <p class="mb-5 text-base text-gray-500 sm:text-lg dark:text-gray-400">
                 Seleccione lo que quiere hacer:
