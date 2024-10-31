@@ -22,6 +22,9 @@ return new class extends Migration
 
             $table->date('fecha')->comment('Fecha del movimiento');
             $table->string('documento')->comment('tipo de documento');
+            $table->string('numero')->comment('Numero del documento');
+            $table->string('destinatario')->comment('A nombre de quien se creo el documento');
+            $table->string('documento_dest')->comment('Numero del documento del destinatario');
             $table->double('valor')->comment('Valor neto del movimiento');
             $table->double('iva')->nullable()->comment('Impuesto aplicable');
             $table->double('total')->comment('valor total del movimiento');
