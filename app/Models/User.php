@@ -6,6 +6,7 @@ namespace App\Models;
 
 use App\Models\Gestion\Asignacion;
 use App\Models\Gestion\Gestion;
+use App\Models\Gestion\Papele;
 use App\Models\Gestion\Soporte;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -82,6 +83,11 @@ class User extends Authenticatable
     public function gestiones():HasMany
     {
         return $this->hasMany(Gestion::class);
+    }
+
+    public function papeles():HasMany
+    {
+        return $this->hasMany(Papele::class);
     }
 
     public function scopeBuscar($query, $item){

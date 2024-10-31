@@ -16,6 +16,7 @@ class ClienteGestion extends Component
     public $is_soporte=false;
     public $is_bitacora=false;
     public $is_asignado=false;
+    public $is_papeles=false;
     public $bitacoras=[];
 
     public function mount($id){
@@ -43,6 +44,7 @@ class ClienteGestion extends Component
             'is_programacion',
             'is_soporte',
             'is_bitacora',
+            'is_papeles',
             'bitacoras'
         );
     }
@@ -64,6 +66,11 @@ class ClienteGestion extends Component
     public function cargasoporte(){
         $this->volver();
         $this->is_soporte=true;
+    }
+
+    public function papelestrabajo(){
+        $this->volver();
+        $this->is_papeles=true;
     }
 
     public function programacion(){
