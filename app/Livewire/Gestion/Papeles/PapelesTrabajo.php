@@ -25,6 +25,7 @@ class PapelesTrabajo extends Component
     public $param;
     public $paradeta;
     public $valor;
+    public $is_confirma=false;
 
     public $ordena='created_at';
     public $ordenado='DESC';
@@ -97,10 +98,8 @@ class PapelesTrabajo extends Component
 
     public function calculo($id){
         $esta=Calculo::where('papele_id',$id)
-                        ->where('status',1)
                         ->where('parametro_id',$this->paradeta->id)
                         ->where('cliente_id',$this->elegido->id)
-                        ->where('user_id',Auth::user()->id)
                         ->first();
         if($esta){
             $this->dispatch('alerta', name:'Ya se cargo este registro.');
@@ -133,6 +132,30 @@ class PapelesTrabajo extends Component
                             ->where('cliente_id',$this->elegido->id)
                             ->where('user_id',Auth::user()->id)
                             ->get();
+    }
+
+    public function confirmar(){
+        $this->is_confirma=true;
+    }
+
+    public function finalizar(){
+        foreach ($this->valor as $value) {
+            $reg=Papele::where('id',$value->papele_id)->first();
+                    $reg->update([
+                        'calculos'=>$reg->calculos+1,
+                    ]);
+        }
+
+        Calculo::where('status',1)
+                ->where('parametro_id',$this->paradeta->id)
+                ->where('cliente_id',$this->elegido->id)
+                ->where('user_id',Auth::user()->id)
+                ->update([
+                    'status'=>2
+                ]);
+
+        $this->dispatch('alerta', name:'Se cargaron correctamente los calculos.');
+        $this->reset('paradeta','valor','param');
     }
 
     private function cargarch(){
