@@ -35,4 +35,10 @@ class Calculo extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function scopeParametro($query, $item){
+        $query->when($item ?? null, function($query, $item){
+            $query->where('parametro_id', $item);
+        });
+    }
 }

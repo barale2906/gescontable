@@ -6,6 +6,7 @@ use App\Models\Clientes\Clientes\Cliente;
 use App\Models\Configuracion\Parametro;
 use App\Models\Gestion\Calculo;
 use App\Models\Gestion\Papele;
+use App\Traits\FiltroTrait;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -18,6 +19,7 @@ class PapelesTrabajo extends Component
 {
     use WithPagination;
     use WithFileUploads;
+    use FiltroTrait;
 
     public $elegido;
     public $ruta;
@@ -25,6 +27,14 @@ class PapelesTrabajo extends Component
     public $param;
     public $paradeta;
     public $valor;
+
+    public $buscar=null;
+    public $buscaregistro;
+
+    public $filtrofecdes;
+    public $filtrofechas;
+    public $filtrofechagest=[];
+    public $filtroparametro;
     public $is_confirma=false;
 
     public $ordena='created_at';
@@ -33,6 +43,13 @@ class PapelesTrabajo extends Component
 
     public function mount($id){
         $this->elegido=Cliente::find($id);
+        $this->claseFiltro(6);
+    }
+
+    //Cargar variable
+    public function buscaText(){
+        $this->resetPage();
+        $this->buscaregistro=strtolower($this->buscar);
     }
 
     // Ordenar Registros
@@ -74,6 +91,25 @@ class PapelesTrabajo extends Component
     public function updatedParam(){
         $this->paradeta=Parametro::find(intval($this->param));
         $this->limpiacarga();
+    }
+
+    public function updatedFiltrofechas(){
+        if($this->filtrofecdes<=$this->filtrofechas){
+            $crea=array();
+            array_push($crea, $this->filtrofecdes);
+            array_push($crea, $this->filtrofechas);
+            $this->filtrofechagest=$crea;
+        }else{
+            $this->dispatch('alerta', name:'Fecha de inicio debe ser menor a fecha fin');
+        }
+    }
+
+    public function updatedFiltroparametro(){
+        $this->reset('paradeta','valor','param');
+        $this->paradeta=Parametro::find(intval($this->filtroparametro));
+        $this->valor=Calculo::where('cliente_id',$this->elegido->id)
+                            ->parametro(intval($this->filtroparametro))
+                            ->get();
     }
 
     public function limpiacarga(){
@@ -203,6 +239,8 @@ class PapelesTrabajo extends Component
 
     private function papeles(){
         return Papele::where('cliente_id', $this->elegido->id)
+                        ->buscar($this->buscaregistro)
+                        ->fecha($this->filtrofechagest)
                         ->orderBy($this->ordena, $this->ordenado)
                         ->paginate($this->pages);
     }

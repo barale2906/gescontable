@@ -12,6 +12,9 @@ trait FiltroTrait
     public $txt;
     public $permiso;
 
+    public $is_fecha=false;
+    public $is_parametro=false;
+
     public function filtroMostrar(){
         $this->is_filtro=!$this->is_filtro;
     }
@@ -46,6 +49,14 @@ trait FiltroTrait
                 //Programaciones - gestiones
                 $this->txt="Buscar por nombre y observaciones";
                 $this->permiso='cl_programacionCrea';
+                break;
+
+            case 6:
+                //Papeles
+                $this->txt="Buscar por documento, destinatario, documento destinatario";
+                $this->permiso='cl';
+                $this->is_fecha=true;
+                $this->is_parametro=true;
                 break;
         }
     }

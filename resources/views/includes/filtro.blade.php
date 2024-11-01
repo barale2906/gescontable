@@ -26,8 +26,36 @@
         @endcan
     </div>
     @if ($is_filtro)
-        <div class="grid md:grid-cols-6 md:gap-6">
-            alex
+        <div class="grid md:grid-cols-3 md:gap-1">
+            @if ($is_fecha)
+                <div class="mb-6 ring-1 ring-zinc-600 rounded-md p-2">
+                    <label for="filtrofecdes" class="block mb-2 text-xs md:text-sm font-medium text-gray-900 dark:text-white">Fecha</label>
+                    <div class="relative z-0 w-full mb-5 group">
+                        <input type="date" wire:model.live="filtrofecdes" class="block py-2.5 px-0 w-full text-xs md:text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"  />
+                        <label for="filtrofecdes" class="peer-focus:font-medium absolute text-xs md:text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Desde</label>
+                    </div>
+                    @if ($filtrofecdes)
+                        <div class="relative z-0 w-full mb-5 group">
+                            <input type="date" wire:model.live="filtrofechas" class="block py-2.5 px-0 w-full text-xs md:text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"  />
+                            <label for="filtrofechas" class="peer-focus:font-medium absolute text-xs md:text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Hasta</label>
+                        </div>
+                    @endif
+                </div>
+            @endif
+            @if ($is_parametro)
+                <div class="mb-6 ring-1 ring-zinc-600 rounded-md p-2">
+
+                    <label for="filtroparametro" class="block mb-2 text-xs md:text-sm font-medium text-gray-900 dark:text-white">Parámetro</label>
+                    <select wire:model.live="filtroparametro" id="filtroparametro"
+                    class="block py-2.5 px-0 w-full text-xs md:text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer mb-2 capitalize">
+                        <option >parametro</option>
+                        @foreach ($parametros as $item)
+                            <option value={{$item->id}}>{{$item->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+            @endif
         </div>
     @endif
+
 </form>
