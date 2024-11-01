@@ -3,6 +3,7 @@
 namespace App\Models\Clientes\Clientes;
 
 use App\Models\Gestion\Asignacion;
+use App\Models\Gestion\Calculo;
 use App\Models\Gestion\Gestion;
 use App\Models\Gestion\Papele;
 use App\Models\Gestion\Programacion;
@@ -41,6 +42,11 @@ class Cliente extends Model
     public function papeles():HasMany
     {
         return $this->hasMany(Papele::class);
+    }
+
+    public function calculos():HasMany
+    {
+        return $this->hasMany(Calculo::class);
     }
 
     public function scopeBuscar($query, $item){

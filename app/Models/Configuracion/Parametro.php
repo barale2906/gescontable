@@ -2,6 +2,7 @@
 
 namespace App\Models\Configuracion;
 
+use App\Models\Gestion\Calculo;
 use App\Models\Gestion\Programacion;
 use App\Models\Gestion\Soporte;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -23,6 +24,11 @@ class Parametro extends Model
     public function programaciones():HasMany
     {
         return $this->hasMany(Programacion::class);
+    }
+
+    public function calculos():HasMany
+    {
+        return $this->hasMany(Calculo::class);
     }
 
 

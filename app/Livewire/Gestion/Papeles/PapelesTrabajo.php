@@ -3,6 +3,8 @@
 namespace App\Livewire\Gestion\Papeles;
 
 use App\Models\Clientes\Clientes\Cliente;
+use App\Models\Configuracion\Parametro;
+use App\Models\Gestion\Calculo;
 use App\Models\Gestion\Papele;
 use Exception;
 use Illuminate\Support\Facades\Auth;
@@ -20,6 +22,9 @@ class PapelesTrabajo extends Component
     public $elegido;
     public $ruta;
     public $archivo;
+    public $param;
+    public $paradeta;
+    public $valor;
 
     public $ordena='created_at';
     public $ordenado='DESC';
@@ -65,6 +70,18 @@ class PapelesTrabajo extends Component
         );
     }
 
+    public function updatedParam(){
+        $this->paradeta=Parametro::find(intval($this->param));
+        $this->limpiacarga();
+    }
+
+    public function limpiacarga(){
+        Calculo::where('cliente_id', $this->elegido->id)
+                ->where('user_id', Auth::user()->id)
+                ->where('status',1)
+                ->delete();
+    }
+
     public function cargar(){
 
         // validate
@@ -76,6 +93,46 @@ class PapelesTrabajo extends Component
         $this->cargarch();
 
 
+    }
+
+    public function calculo($id){
+        $esta=Calculo::where('papele_id',$id)
+                        ->where('status',1)
+                        ->where('parametro_id',$this->paradeta->id)
+                        ->where('cliente_id',$this->elegido->id)
+                        ->where('user_id',Auth::user()->id)
+                        ->first();
+        if($esta){
+            $this->dispatch('alerta', name:'Ya se cargo este registro.');
+        }else{
+            $ele=Papele::where('id',$id)->select('id','valor')->first();
+            $valor=$this->paradeta->porcentaje*$ele->valor/100;
+            Calculo::create([
+                    'papele_id'     =>$id,
+                    'parametro_id'  =>$this->paradeta->id,
+                    'cliente_id'    =>$this->elegido->id,
+                    'user_id'       =>Auth::user()->id,
+                    'valor'         =>$valor,
+            ]);
+
+            $this->totalizar();
+        }
+
+    }
+
+    public function eliminar($id){
+        Calculo::where('id',$id)
+                ->delete();
+
+        $this->totalizar();
+    }
+
+    public function totalizar(){
+        $this->valor=Calculo::where('status',1)
+                            ->where('parametro_id',$this->paradeta->id)
+                            ->where('cliente_id',$this->elegido->id)
+                            ->where('user_id',Auth::user()->id)
+                            ->get();
     }
 
     private function cargarch(){
@@ -127,10 +184,18 @@ class PapelesTrabajo extends Component
                         ->paginate($this->pages);
     }
 
+    private function parametros(){
+        return Parametro::where('status', true)
+                            ->where('tipo','>',1)
+                            ->orderBy('name','ASC')
+                            ->get();
+    }
+
     public function render()
     {
         return view('livewire.gestion.papeles.papeles-trabajo',[
             'papeles'   =>$this->papeles(),
+            'parametros'=>$this->parametros()
         ]);
     }
 }
