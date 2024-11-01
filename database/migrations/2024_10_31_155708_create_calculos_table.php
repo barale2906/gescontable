@@ -27,6 +27,8 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users');
 
             $table->double('valor')->comment('Valor calculado');
+            $table->date('fecha')->comment('fecha del papel cargado');
+            $table->date('fecha_calculo')->nullable()->comment('fecha en que se carga el calculo');
             $table->integer('status')->default(1)->comment('1 proceso, 2 calculado');
 
             $table->timestamps();

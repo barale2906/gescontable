@@ -99,6 +99,9 @@ class PapelesTrabajo extends Component
             array_push($crea, $this->filtrofecdes);
             array_push($crea, $this->filtrofechas);
             $this->filtrofechagest=$crea;
+            if($this->valor){
+                $this->updatedFiltroparametro();
+            }
         }else{
             $this->dispatch('alerta', name:'Fecha de inicio debe ser menor a fecha fin');
         }
@@ -109,6 +112,7 @@ class PapelesTrabajo extends Component
         $this->paradeta=Parametro::find(intval($this->filtroparametro));
         $this->valor=Calculo::where('cliente_id',$this->elegido->id)
                             ->parametro(intval($this->filtroparametro))
+                            ->fecha($this->filtrofechagest)
                             ->get();
     }
 
@@ -140,7 +144,7 @@ class PapelesTrabajo extends Component
         if($esta){
             $this->dispatch('alerta', name:'Ya se cargo este registro.');
         }else{
-            $ele=Papele::where('id',$id)->select('id','valor')->first();
+            $ele=Papele::where('id',$id)->select('id','valor','fecha')->first();
             $valor=$this->paradeta->porcentaje*$ele->valor/100;
             Calculo::create([
                     'papele_id'     =>$id,
@@ -148,6 +152,7 @@ class PapelesTrabajo extends Component
                     'cliente_id'    =>$this->elegido->id,
                     'user_id'       =>Auth::user()->id,
                     'valor'         =>$valor,
+                    'fecha'         =>$ele->fecha,
             ]);
 
             $this->totalizar();
@@ -187,7 +192,8 @@ class PapelesTrabajo extends Component
                 ->where('cliente_id',$this->elegido->id)
                 ->where('user_id',Auth::user()->id)
                 ->update([
-                    'status'=>2
+                    'status'=>2,
+                    'fecha_calculo'=>now(),
                 ]);
 
         $this->dispatch('alerta', name:'Se cargaron correctamente los calculos.');

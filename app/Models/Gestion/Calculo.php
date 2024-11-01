@@ -5,6 +5,7 @@ namespace App\Models\Gestion;
 use App\Models\Clientes\Clientes\Cliente;
 use App\Models\Configuracion\Parametro;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -39,6 +40,15 @@ class Calculo extends Model
     public function scopeParametro($query, $item){
         $query->when($item ?? null, function($query, $item){
             $query->where('parametro_id', $item);
+        });
+    }
+
+    public function scopeFecha($query, $lapso){
+        $query->when($lapso ?? null, function($query, $lapso){
+            $fecha1=Carbon::parse($lapso[0]);
+            $fecha2=Carbon::parse($lapso[1]);
+            $fecha2->addSeconds(86399);
+            $query->whereBetween('fecha', [$fecha1 , $fecha2]);
         });
     }
 }
