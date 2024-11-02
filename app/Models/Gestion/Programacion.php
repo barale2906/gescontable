@@ -40,6 +40,12 @@ class Programacion extends Model
         });
     }
 
+    public function scopeEmpresas($query, $item){
+        $query->when($item ?? null, function($query, $item){
+            $query->whereIn('cliente_id', $item);
+        });
+    }
+
     public function scopeParametro($query, $item){
         $query->when($item ?? null, function($query, $item){
             $query->where('parametro_id', $item);
@@ -51,6 +57,14 @@ class Programacion extends Model
             $fecha1=Carbon::parse($lapso[0]);
             $fecha2=Carbon::parse($lapso[1]);
             $query->whereBetween('inicio', [$fecha1 , $fecha2]);
+        });
+    }
+
+    public function scopeFin($query, $lapso){
+        $query->when($lapso ?? null, function($query, $lapso){
+            $fecha1=Carbon::parse($lapso[0]);
+            $fecha2=Carbon::parse($lapso[1]);
+            $query->whereBetween('fin', [$fecha1 , $fecha2]);
         });
     }
 }
