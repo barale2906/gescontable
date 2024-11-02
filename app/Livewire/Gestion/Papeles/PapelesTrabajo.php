@@ -36,6 +36,11 @@ class PapelesTrabajo extends Component
     public $filtrofechagest=[];
     public $filtroparametro;
     public $is_confirma=false;
+    public $borrareg;
+    public $is_borraregistro=false;
+
+    public $crterrores=[];
+    public $is_errores=false;
 
     public $ordena='created_at';
     public $ordenado='DESC';
@@ -127,6 +132,7 @@ class PapelesTrabajo extends Component
 
         // validate
         $this->validate();
+        $this->reset('crterrores','is_errores');
 
         $this->ruta='papeles/'.$this->elegido->id."-".uniqid().".".$this->archivo->extension();
         $this->archivo->storeAs($this->ruta);
@@ -173,6 +179,17 @@ class PapelesTrabajo extends Component
                             ->where('cliente_id',$this->elegido->id)
                             ->where('user_id',Auth::user()->id)
                             ->get();
+    }
+
+    public function eliminarregistro($id){
+        $this->borrareg=$id;
+        $this->is_borraregistro=true;
+    }
+
+    public function eliminarconfirma($id){
+        Papele::where('id',$id)->delete();
+        $this->reset('borrareg','is_borraregistro');
+        $this->dispatch('alerta', name:'Se elimino el registro correctamente.');
     }
 
     public function confirmar(){
@@ -225,7 +242,11 @@ class PapelesTrabajo extends Component
                     ]);
 
                 }catch(Exception $exception){
-                    Log::info('Line: ' . $row . ' '.$this->ruta.' with error: ' . $exception->getMessage().' real: '.$data[1]);
+                    //Log::info('Line: ' . $row . ' '.$this->ruta.' with error: ' . $exception->getMessage().' real: '.$data[1]);
+                    $errorMessage = $exception->getMessage();
+                    $cleanMessage = preg_replace("/\(Connection:.*$/", "", $errorMessage);
+                    $error=$cleanMessage.' numero de línea: '.$row;
+                    array_push($this->crterrores,$error);
                 }
             }
 
@@ -238,8 +259,14 @@ class PapelesTrabajo extends Component
             Log::error('No se pudo abrir el archivo en la ruta: ' . Storage::path($this->ruta));
         }
 
-        // Notificación
-        $this->dispatch('alerta', name:'Se ha cargado correctamente el documento');
+        if(count($this->crterrores)>0){
+            $this->dispatch('alerta', name:'Se presentaron errores al cargar, valide los datos');
+            $this->is_errores=true;
+        }else{
+            // Notificación
+            $this->dispatch('alerta', name:'Se ha cargado correctamente el documento');
+        }
+
         $this->resetFields();
     }
 
@@ -253,7 +280,7 @@ class PapelesTrabajo extends Component
 
     private function parametros(){
         return Parametro::where('status', true)
-                            ->where('tipo','>',1)
+                            ->where('tipo','>',2)
                             ->orderBy('name','ASC')
                             ->get();
     }

@@ -122,6 +122,14 @@
         @endif
     </div>
 
+    @if ($is_errores)
+        @foreach ($crterrores as $item)
+            <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                <span class="font-medium">Error:</span> {{$item}}.
+            </div>
+        @endforeach
+    @endif
+
     <table class=" text-sm text-left text-gray-500 dark:text-gray-400 mt-4">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
@@ -250,12 +258,20 @@
                                 @if ($valor)
                                     @foreach ($valor as $val)
                                         @if ($val->papele_id===$item->id)
-                                            <a href="" wire:click.prevent="eliminar({{$val->id}})" class="text-black bg-gradient-to-r from-red-300 via-red-400 to-red-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-200 dark:focus:ring-red-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 capitalize">
+                                            <a href="" wire:click.prevent="eliminar({{$val->id}})" class="text-black bg-gradient-to-r from-orange-300 via-orange-400 to-orange-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-orange-200 dark:focus:ring-orange-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 capitalize">
                                                 $ {{number_format($val->valor, 0, ',', '.')}}
                                             </a>
                                         @endif
                                     @endforeach
                                 @endif
+                            @endif
+                            <a href="" wire:click.prevent="eliminarregistro({{$item->id}})" class="text-black bg-gradient-to-r from-red-300 via-red-400 to-red-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-200 dark:focus:ring-red-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 capitalize">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </a>
+                            @if ($is_borraregistro && $borrareg===$item->id)
+                                <a href="" wire:click.prevent="eliminarconfirma({{$item->id}})" class="text-black bg-gradient-to-r from-red-300 via-red-400 to-red-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-200 dark:focus:ring-red-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 capitalize">
+                                    <i class="fa-solid fa-trash-can"></i> Borrar Documento
+                                </a>
                             @endif
                         </th>
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
