@@ -8,6 +8,7 @@ use App\Models\Gestion\Programacion;
 use Livewire\WithPagination;
 use App\Traits\EdicionTrait;
 use App\Traits\FiltroTrait;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\On;
 
@@ -225,7 +226,8 @@ trait ProgramacionTrait
 
         $bitacora=now()." ".strtolower(Auth::user()->name).": Creo la actividad con estas observaciones: ";
 
-        Programacion::create([
+        if($this->inicio===$this->fin){
+            Programacion::create([
                         'name'          => $this->name,
                         'inicio'        => $this->inicio,
                         'fin'           => $this->fin,
@@ -233,6 +235,24 @@ trait ProgramacionTrait
                         'cliente_id'    => $this->cliente_id,
                         'parametro_id'  => $this->parametro_id,
                     ]);
+        }else{
+            $fechaInicio = Carbon::parse($this->inicio);
+            $fechaFin = Carbon::parse($this->fin);
+
+            $diferenciaDias = $fechaInicio->diffInDays($fechaFin);
+
+            for ($i=0; $i <= $diferenciaDias; $i++) {
+                $dia = (clone $fechaInicio)->addDays($i);
+                Programacion::create([
+                    'name'          => $dia->format('Y-m-d')." ".$i." : ".$this->name,
+                    'inicio'        => $dia,
+                    'fin'           => $dia,
+                    'observaciones' => $bitacora." Múltiple: ".$this->observaciones." ----- ",
+                    'cliente_id'    => $this->cliente_id,
+                    'parametro_id'  => $this->parametro_id,
+                ]);
+            }
+        }
 
         // Notificación
         $this->dispatch('alerta', name:'Se ha creado correctamente la actividad: '.$this->name);

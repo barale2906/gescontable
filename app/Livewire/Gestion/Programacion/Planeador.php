@@ -71,7 +71,7 @@ class Planeador extends Component
 
         return Programacion::empresas($this->clientes)
                             ->fin($this->filtrofin)
-                            ->orderBy('inicio', 'ASC')
+                            ->orderBy('name', 'ASC')
                             ->get();
     }
 
