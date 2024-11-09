@@ -4,6 +4,8 @@
 /public/hot
 /public/csv
 /public/storage
+/storage/gescontable-web.json
+/storage/gescontable-local.json
 /storage/*.key
 /vendor
 .env

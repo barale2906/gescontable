@@ -31,4 +31,8 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'google' => [
+        'client_secret' => base_path(env('GOOGLE_APPLICATION_CREDENTIALS')),
+    ],
+
 ];
