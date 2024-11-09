@@ -4,6 +4,7 @@
             <h1 class="text-xl uppercase">gestiones</h1>
         </div>
         @include('includes.filtro')
+        <livewire:google.gestion :id="$id"/>
         @if ($is_modify)
             <table class=" text-sm text-left text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
