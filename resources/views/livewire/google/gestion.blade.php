@@ -36,13 +36,4 @@
     <button type="button" wire:click.prevent="definicion" class="focus:outline-none text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-900">
         Google
     </button>
-    @if ($is_google)
-        <div class="w-full h-screen">
-            <iframe
-                src="{{$ruta}}"
-                class="w-full h-full border-0"
-                title="Google"
-            ></iframe>
-        </div>
-    @endif
 </div>
