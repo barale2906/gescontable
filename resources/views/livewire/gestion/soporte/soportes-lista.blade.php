@@ -102,11 +102,20 @@
             @foreach ($soportes as $item)
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-green-200">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        <a href="{{Storage::url($item->ruta)}}" target="_blank">
-                            <button type="button" class="px-4 py-2 text-sm font-medium text-gray-900 bg-blue-150 border border-gray-200 rounded-lg hover:bg-green-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
-                                <i class="fa-solid fa-magnifying-glass"></i>
-                            </button>
-                        </a>
+                        @if ($item->google===1)
+                            <a href="{{Storage::url($item->ruta)}}" target="_blank">
+                                <button type="button" class="px-4 py-2 text-sm font-medium text-gray-900 bg-blue-150 border border-gray-200 rounded-lg hover:bg-green-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </button>
+                            </a>
+                        @else
+                            <a href="{{ route('gestion.google', ['id' => $item->id]) }}">
+                                <button type="button" class="px-4 py-2 text-sm font-medium text-gray-900 bg-blue-150 border border-gray-200 rounded-lg hover:bg-green-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
+                                    <i class="fa-brands fa-google-drive"></i>
+                                </button>
+                            </a>
+                        @endif
+
                     </th>
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         {{$item->clien}}

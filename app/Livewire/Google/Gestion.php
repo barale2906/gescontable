@@ -107,6 +107,7 @@ class Gestion extends Component
                     'parametro_id'=>intval($this->param),
                     'cliente_id'=>$this->cliente->id,
                     'cargado_id'=>Auth::user()->id,
+                    'google'=>2,
                     'ruta'=>$this->ruta,
                     'parame'=>$parametro->name,
                     'clien'=>$this->cliente->name,
@@ -115,10 +116,6 @@ class Gestion extends Component
             ]);
 
             return redirect()->route('gestion.google', ['id' => $registro->id]);
-
-            //return redirect("https://docs.google.com/spreadsheets/d/{$file->id}/edit"); // Hojas de calculo
-            //return redirect("https://docs.google.com/document/d/{$file->id}/edit"); // Documento
-            //return redirect($this->ruta);
 
         } catch (Exception $e) {
                 // Manejar excepciones
