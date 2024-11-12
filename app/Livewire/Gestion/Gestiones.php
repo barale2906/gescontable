@@ -278,7 +278,7 @@ class Gestiones extends Component
         return Programacion::where('cliente_id',$this->id)
                             ->where('status',true)
                             ->select('name','id')
-                            ->orderBy('id','DESC')
+                            ->orderBy('id','ASC')
                             ->get();
     }
 
