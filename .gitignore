@@ -4,6 +4,7 @@
 /public/hot
 /public/csv
 /public/storage
+/public/img
 /storage/gescontable-web.json
 /storage/gescontable-local.json
 /storage/*.key

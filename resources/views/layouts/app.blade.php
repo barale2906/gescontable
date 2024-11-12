@@ -24,9 +24,9 @@
         <script src="https://unpkg.com/flowbite@latest/dist/flowbite.min.js"></script>
 
         <!-- Scripts -->
-        {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
-        <link href="{{ asset('build/assets/app-DJmmCMVu.css') }}" rel="stylesheet">
-        <script src="{{ asset('build/assets/app-C1-XIpUa.js') }}" defer></script>
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        {{-- <link href="{{ asset('build/assets/app-DJmmCMVu.css') }}" rel="stylesheet">
+        <script src="{{ asset('build/assets/app-C1-XIpUa.js') }}" defer></script> --}}
 
         <!-- Styles -->
         @livewireStyles
@@ -35,7 +35,7 @@
     <body class="font-sans antialiased">
         @if (Auth::user()->status)
             @livewire('navegacion.menu')
-            <div class="bg-gray-100 min-h-screen md:ml-5 md:mr-5 md:p-3">
+            <div class="bg-gray-300 min-h-screen md:ml-5 md:mr-5 md:p-3 rounded-lg">
                 <!-- Page Content -->
                 <main>
                     {{ $slot }}

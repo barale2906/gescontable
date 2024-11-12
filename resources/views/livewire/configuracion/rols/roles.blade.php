@@ -1,5 +1,5 @@
 <div class="justify-center items-center">
-    <div class="bg-blue-200 rounded-lg align-middle p-2 mb-2 text-center">
+    <div class="bg-orange-200 rounded-lg align-middle p-2 mb-2 text-center">
         <h1 class="text-xl uppercase">roles y permisos</h1>
     </div>
 
@@ -7,7 +7,7 @@
         <div class="flex justify-end mb-4 ">
             @can('cf_rolesCrea')
                 <div class="inline-flex rounded-md shadow-sm" role="group">
-                    <button type="button" wire:click.prevent="show({{1}},{{3}})" class="px-4 py-2 text-sm font-medium text-blue-700 bg-cyan-300 border border-cyan-200 rounded-s-lg hover:bg-cyan-100 hover:text-cyan-700 focus:z-10 focus:ring-2 focus:ring-cyan-700 focus:text-cyan-700 dark:bg-gray-800 dark:border-cyan-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-500 dark:focus:text-white">
+                    <button type="button" wire:click.prevent="show({{1}},{{3}})" class="px-4 py-2 text-sm font-medium text-orange-700 bg-amber-300 border border-amber-200 rounded-s-lg hover:bg-amber-100 hover:text-amber-700 focus:z-10 focus:ring-2 focus:ring-amber-700 focus:text-amber-700 dark:bg-gray-800 dark:border-amber-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-500 dark:focus:text-white">
                         <i class="fa-solid fa-plus"></i> Crear
                     </button>
 
@@ -19,7 +19,7 @@
         </div>
         <div class="max-w-md mx-auto p-2 rounded-sm">
             <table class=" text-sm text-left text-gray-500 dark:text-gray-400 rounded-xl">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <thead class="text-xs text-gray-700 uppercase bg-amber-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                         <th scope="col" class="px-6 py-3">
 
@@ -34,12 +34,12 @@
                 </thead>
                 <tbody>
                     @foreach ($roles as $item)
-                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-green-200">
+                        <tr class="bg-amber-50 border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-amber-200">
                             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 @can('cf_rolesEdita')
                                     <div class="inline-flex rounded-md shadow-sm" role="group">
                                         @if ($item->status)
-                                            <button type="button" wire:click.prevent="show({{$item->id}},{{0}})" class="px-4 py-2 text-sm font-medium text-blue-700 bg-cyan-300 border border-cyan-200 rounded-s-lg hover:bg-cyan-100 hover:text-cyan-700 focus:z-10 focus:ring-2 focus:ring-cyan-700 focus:text-cyan-700 dark:bg-gray-800 dark:border-cyan-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-500 dark:focus:text-white">
+                                            <button type="button" wire:click.prevent="show({{$item->id}},{{0}})" class="px-4 py-2 text-sm font-medium text-orange-700 bg-amber-300 border border-amber-200 rounded-s-lg hover:bg-amber-100 hover:text-amber-700 focus:z-10 focus:ring-2 focus:ring-amber-700 focus:text-amber-700 dark:bg-gray-800 dark:border-amber-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-500 dark:focus:text-white">
                                                 <i class="fa-solid fa-marker"></i>
                                             </button>
                                         @endif

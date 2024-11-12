@@ -1,6 +1,6 @@
 <div>
     <div class="justify-center items-center">
-        <div class="bg-blue-200 rounded-lg align-middle p-2 mb-2 text-center">
+        <div class="bg-orange-200 rounded-lg align-middle p-2 mb-2 text-center">
             <h1 class="text-xl uppercase">usuarios registrados en el sistema</h1>
         </div>
         @include('includes.filtro')
@@ -8,7 +8,7 @@
         <div class="max-w-md mx-auto p-2 rounded-sm">
 
             <table class=" text-sm text-left text-gray-500 dark:text-gray-400">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <thead class="text-xs text-gray-700 uppercase bg-amber-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                         <th scope="col" class="px-6 py-3">
 
@@ -53,12 +53,12 @@
                 </thead>
                 <tbody>
                     @foreach ($users as $item)
-                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-green-200">
+                        <tr class="bg-amber-50 border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-amber-200">
                             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 <div class="inline-flex rounded-md shadow-sm">
                                     @can('cf_usersEdita')
                                         @if ($item->status===1)
-                                            <a href="#" wire:click.prevent="show({{$item->id}},{{0}})" aria-current="page" class="px-4 py-2 text-sm font-medium text-blue-700  bg-blue-400 border border-gray-200 rounded-s-lg hover:bg-gray-100 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white">
+                                            <a href="#" wire:click.prevent="show({{$item->id}},{{0}})" aria-current="page" class="px-4 py-2 text-sm font-medium text-orange-700  bg-orange-400 border border-gray-200 rounded-s-lg hover:bg-gray-100 focus:z-10 focus:ring-2 focus:ring-orange-700 focus:text-orange-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-orange-500 dark:focus:text-white">
                                                 <i class="fa-solid fa-marker"></i>
                                             </a>
                                         @endif
@@ -86,11 +86,11 @@
 
         </div>
 
-        <div class="mt-2 p-1 w-auto rounded-lg grid grid-cols-2 gap-4 bg-blue-100">
+        <div class="mt-2 p-1 w-auto rounded-lg grid grid-cols-2 gap-4 bg-orange-100">
             <div>
                 <label class="relative inline-flex items-center mb-4 cursor-pointer">
                     <span class="ml-3 mr-3 text-sm font-medium text-gray-900 dark:text-gray-300">Registros:</span>
-                    <select wire:click="paginas($event.target.value)" id="countries" class="w-20 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <select wire:click="paginas($event.target.value)" id="countries" class="w-20 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-500 dark:focus:border-orange-500">
                         <option value=15>15</option>
                         <option value=20>20</option>
                         <option value=50>50</option>

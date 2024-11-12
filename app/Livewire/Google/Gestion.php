@@ -103,6 +103,16 @@ class Gestion extends Component
                                     ->select('name')
                                     ->first();
 
+            /* dd(
+                " param: ",$this->param,
+                " cliente: ",$this->cliente->id,
+                " carga: ",Auth::user()->id,
+                " Ruta: ",$this->ruta,
+                " parame: ",$parametro->name,
+                " clien: ",$this->cliente->name,
+                " name: ",$this->nombrecarga,
+            ); */
+
             $registro=Soporte::create([
                     'parametro_id'=>intval($this->param),
                     'cliente_id'=>$this->cliente->id,
@@ -118,11 +128,11 @@ class Gestion extends Component
             return redirect()->route('gestion.google', ['id' => $registro->id]);
 
         } catch (Exception $e) {
-                // Manejar excepciones
-                Log::info('Error al crear la hoja de cálculo:' . $e->getMessage());
-                $this->dispatch('alerta', name:'No se genero.');
-                return response()->json(['error' => 'Error al crear la hoja de cálculo.'], 500);
-            }
+            // Manejar excepciones
+            Log::info('Error al crear la hoja de cálculo:' . $e->getMessage());
+            $this->dispatch('alerta', name:'No se genero.');
+            return response()->json(['error' => 'Error al crear la hoja de cálculo.'], 500);
+        }
 
     }
 

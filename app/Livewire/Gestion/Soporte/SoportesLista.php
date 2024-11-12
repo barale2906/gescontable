@@ -28,10 +28,13 @@ class SoportesLista extends Component
     public $parametro;
     public $archivo;
     public $ruta;
+    public $tipo;
+    public $id;
 
 
     public function mount($id){
         $this->cliente=Cliente::find($id);
+        $this->id=$id;
     }
 
     // Ordenar Registros
@@ -72,6 +75,10 @@ class SoportesLista extends Component
             'name',
             'archivo',
         );
+    }
+
+    public function updatedTipo(){
+        $this->tipo=intval($this->tipo);
     }
 
     public function new(){

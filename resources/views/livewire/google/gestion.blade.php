@@ -1,5 +1,5 @@
 <div>
-    <div class="grid md:grid-cols-3 md:gap-1">
+    <div class="grid md:grid-cols-3 md:gap-1 m-4">
         <div class="mb-6 ring-1 ring-zinc-600 rounded-md p-2">
             <label for="nombre" class="block mb-2 text-xs md:text-sm font-medium text-gray-900 dark:text-white">Nombre del archivo</label>
             <div class="relative z-0 w-full mb-5 group">
@@ -33,7 +33,7 @@
             </select>
         </div>
     </div>
-    <button type="button" wire:click.prevent="definicion" class="focus:outline-none text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-900">
+    <button type="button" wire:click.prevent="definicion" class="focus:outline-none text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-900 m-2">
         Google
     </button>
     <div wire:loading wire:target="definicion" class="text-center text-xl font-extrabold text-red-500 capitalize">¡Por favor espere! Generando documento...</div>

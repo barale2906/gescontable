@@ -1,7 +1,7 @@
 <div>
 
     @if ($is_asignado)
-        <div class="w-full p-4 text-center bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+        <div class="w-full p-4 text-center bg-amber-50 border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
             <h5 class="mb-2 text-3xl font-bold text-gray-900 dark:text-white uppercase">
                 {{$actual->name}} NIT: {{$actual->nit}} - {{$actual->DV}}
             </h5>
@@ -9,43 +9,43 @@
                 Datos importantes del cliente:
             </p>
             <dl class="grid max-w-screen-xl xs:grid-cols-1 gap-0 p-1 mx-auto text-gray-900 sm:grid-cols-4 xl:grid-cols-4 dark:text-white sm:p-1">
-                <div class="flex flex-col items-center justify-center border border-blue-800 bg-blue-200 m-1 p-1 rounded-lg">
+                <div class="flex flex-col items-center justify-center border border-orange-800 bg-orange-200 m-1 p-1 rounded-lg">
                     <dt class="mb-2 text-lg font-extrabold">Representante Legal</dt>
                     <dd class="text-gray-500 dark:text-gray-400 capitalize">{{$actual->representante_legal}}</dd>
                 </div>
-                <div class="flex flex-col items-center justify-center border border-blue-800 bg-blue-200 m-1 p-1 rounded-lg">
+                <div class="flex flex-col items-center justify-center border border-orange-800 bg-orange-200 m-1 p-1 rounded-lg">
                     <dt class="mb-2 text-lg font-extrabold">Cédula Representante</dt>
                     <dd class="text-gray-500 dark:text-gray-400">{{$actual->cedula_rl}}</dd>
                 </div>
-                <div class="flex flex-col items-center justify-center border border-blue-800 bg-blue-200 m-1 p-1 rounded-lg">
+                <div class="flex flex-col items-center justify-center border border-orange-800 bg-orange-200 m-1 p-1 rounded-lg">
                     <dt class="mb-2 text-lg font-extrabold">Dirección</dt>
                     <dd class="text-gray-500 dark:text-gray-400">{{$actual->direccion}}</dd>
                 </div>
-                <div class="flex flex-col items-center justify-center border border-blue-800 bg-blue-200 m-1 p-1 rounded-lg">
+                <div class="flex flex-col items-center justify-center border border-orange-800 bg-orange-200 m-1 p-1 rounded-lg">
                     <dt class="mb-2 text-lg font-extrabold">Teléfono</dt>
                     <dd class="text-gray-500 dark:text-gray-400">{{$actual->telefono}}</dd>
                 </div>
-                <div class="flex flex-col items-center justify-center border border-blue-800 bg-blue-200 m-1 p-1 rounded-lg">
+                <div class="flex flex-col items-center justify-center border border-orange-800 bg-orange-200 m-1 p-1 rounded-lg">
                     <dt class="mb-2 text-lg font-extrabold">Persona de contacto</dt>
                     <dd class="text-gray-500 dark:text-gray-400">{{$actual->persona_contacto}}</dd>
                 </div>
-                <div class="flex flex-col items-center justify-center border border-blue-800 bg-blue-200 m-1 p-1 rounded-lg">
+                <div class="flex flex-col items-center justify-center border border-orange-800 bg-orange-200 m-1 p-1 rounded-lg">
                     <dt class="mb-2 text-lg font-extrabold">Correo Electrónico</dt>
                     <dd class="text-gray-500 dark:text-gray-400">{{$actual->email}}</dd>
                 </div>
-                <div class="flex flex-col items-center justify-center border border-blue-800 bg-blue-200 m-1 p-1 rounded-lg">
+                <div class="flex flex-col items-center justify-center border border-orange-800 bg-orange-200 m-1 p-1 rounded-lg">
                     <dt class="mb-2 text-lg font-extrabold">Software Contable</dt>
                     <dd class="text-gray-500 dark:text-gray-400">{{$actual->software_contable}}</dd>
                 </div>
-                <div class="flex flex-col items-center justify-center border border-blue-800 bg-blue-200 m-1 p-1 rounded-lg">
+                <div class="flex flex-col items-center justify-center border border-orange-800 bg-orange-200 m-1 p-1 rounded-lg">
                     <dt class="mb-2 text-lg font-extrabold">Usuario software</dt>
                     <dd class="text-gray-500 dark:text-gray-400">{{$actual->usuario}}</dd>
                 </div>
-                <div class="flex flex-col items-center justify-center border border-blue-800 bg-blue-200 m-1 p-1 rounded-lg">
+                <div class="flex flex-col items-center justify-center border border-orange-800 bg-orange-200 m-1 p-1 rounded-lg">
                     <dt class="mb-2 text-lg font-extrabold">Llave</dt>
                     <dd class="text-gray-500 dark:text-gray-400">{{$actual->llave}}</dd>
                 </div>
-                <div class="flex flex-col items-center justify-center border border-blue-800 bg-blue-200 m-1 p-1 rounded-lg">
+                <div class="flex flex-col items-center justify-center border border-orange-800 bg-orange-200 m-1 p-1 rounded-lg">
                     <dt class="mb-2 text-lg font-extrabold">Matricula</dt>
                     <dd class="text-gray-500 dark:text-gray-400">{{$actual->matricula}}</dd>
                 </div>
@@ -73,7 +73,7 @@
                     Papeles de trabajo
                 </button>
                 <button type="button" wire:click.prevent="$dispatch('cancelando')" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
-                    Cancelar
+                    Volver
                 </button>
 
             </div>
