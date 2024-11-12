@@ -33,6 +33,7 @@ class Gestiones extends Component
     public $nameinac;
     public $statusinac;
     public $elegido;
+    public $avance;
 
     public $buscar=null;
     public $buscaregistro;
@@ -144,6 +145,18 @@ class Gestiones extends Component
                             'soporte_id'        =>$this->soporte_id,
                             'observaciones'     =>$bitacora.$this->observaciones.' ----- ',
                         ]);
+
+        //Cerrar programación
+        if($this->programacion_id>0 && $this->avance>1){
+            $progra=Programacion::find($this->programacion_id);
+            $reg=now()." ".strtolower(Auth::user()->name).": Cerro la programación con estas observaciones: ";
+            //Actualiza estado
+            Programacion::where('id',$this->programacion_id)
+                        ->update([
+                            'observaciones' =>$reg." ".$this->observaciones." ----- ".$progra->observaciones,
+                            'status'        =>false
+                        ]);
+        }
 
         // Notificación
         $this->dispatch('alerta', name:'Se ha creado correctamente la gestión: '.$this->name);
